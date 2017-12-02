@@ -154,10 +154,10 @@ def SEND_MESSAGE(op):
                     sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
 		if msg.text == ".time":
                     sendMessage(msg.to, datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S'))
-		if (".enc" in msg.text):
+		if msg.text == ".enc":
 		   enc = msg.text.replace(".enc ","")
 		   sendMessage(msg.to, enc.encode('base64','strict'))
-		if (".dec" in msg.text):
+		if msg.text == ".dec":
 		   dec = msg.text.replace(".dec ","")
 		   sendMessage(msg.to, dec.decode('base64','strict'))
 		if msg.text == ".log1":
