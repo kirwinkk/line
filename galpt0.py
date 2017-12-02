@@ -35,8 +35,6 @@ client10 = LineClient()
 profile, setting, tracer = client.getProfile(), client.getSettings(), LineTracer(client)
 offbot, messageReq, wordsArray, waitingAnswer = [], {}, {}, {}
 
-sendMessage(msg.to, "" + client._loginresult())
-
 print client._loginresult()
 
 wait = {
