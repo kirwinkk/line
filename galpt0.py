@@ -112,7 +112,13 @@ def RECEIVE_MESSAGE(op):
                 if msg.to in wait['readPoint']:
                     if msg.from_ in wait["ROM"][msg.to]:
                         del wait["ROM"][msg.to][msg.from_]
-		if msg.text == ".mid":
+               	else:
+                   	pass
+      	    except:
+               	pass
+        else:
+            pass
+	if msg.text == ".mid":
                 	sendMessage(msg.to, msg.to)
 		if msg.text == ".m?":
                     	sendMessage(msg.to, msg.to)
@@ -120,7 +126,7 @@ def RECEIVE_MESSAGE(op):
                     	sendMessage(msg.to, text=None, contentMetadata={'mid': msg.from_}, contentType=13)
                 if msg.text == ".gift":
                     	sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
-		if msg.text == ".time":
+		if msg.text in [".time"]:
                     	sendMessage(msg.to, datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S'))
 		if (".enc " in msg.text):
 		   	enc = msg.text.replace(".enc ","")
@@ -329,12 +335,6 @@ def RECEIVE_MESSAGE(op):
                     			pass
         		else:
             			pass
-               	else:
-                   	pass
-      	    except:
-               	pass
-        else:
-            pass
     except KeyboardInterrupt:
 	   sys.exit(0)
     except Exception as error:
