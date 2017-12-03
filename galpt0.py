@@ -148,10 +148,9 @@ def SEND_MESSAGE(op):
 				sendMessage(msg.to, "Enter the question to be asked (.q [question])")
 				question = msg.text.replace(".q ","")
 				sendMessage(msg.to, "About to ask @" + username + "\n(" + "" + question + ")" + ".Continue? (.y/.n)")
-				continue = msg.text.replace(".c ","")
-    				if continue == ".y":
+    				if msg.text == ".y":
         				data.ask_question(question)
-    				elif prompt == ".n":
+    				elif msg.text == ".n":
         				sendMessage(msg.to, "Aborted.")
     				else:
         				sendMessage(msg.to, "Unrecognized character(s). Restarting.")
