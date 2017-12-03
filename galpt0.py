@@ -197,6 +197,8 @@ def SEND_MESSAGE(op):
             		if msg.contentType == 0:
                 		if msg.text == ".mid":
                     			sendMessage(msg.to, msg.to)
+				if msg.text == ".m?":
+                    			sendMessage(msg.to, msg.to)
                 		if msg.text == ".me":
                     			sendMessage(msg.to, text=None, contentMetadata={'mid': msg.from_}, contentType=13)
                 		if msg.text == ".gift":
