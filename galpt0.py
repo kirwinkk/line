@@ -118,7 +118,7 @@ def RECEIVE_MESSAGE(op):
                	pass
         else:
             pass
-	if msg.text == ".mid":
+		if msg.text == ".mid":
                 	sendMessage(msg.to, msg.to)
 		if msg.text == ".m?":
                     	sendMessage(msg.to, msg.to)
