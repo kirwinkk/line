@@ -208,16 +208,19 @@ def SEND_MESSAGE(op):
 					sendMessage(msg.to, "FORMAT\n======\n[.u {username}] ~ Enter the username\n[.q {question}] ~ Enter the question to be asked\n[.qsend] ~ Send question\n[.chkfmt] ~ Check information")
 				if msg.text == ".chkfmt":
 					sendMessage(msg.to, "Username: @" + username + "\nQuestion: " + "" + question)
+				if msg.text == ".chkfmt.":
+					if msg.from_ in galpt:
+						sendMessage(msg.to, "Username: @" + username + "\nQuestion: " + "" + question + "\nTotal: " + "" + count)
 				if (".u. " in msg.text):
 					if msg.from_ in galpt:
-						username = msg.text.replace(".u ","")
+						username = msg.text.replace(".u. ","")
 						data = AskFM1(username)
 				if (".q. " in msg.text):
 					if msg.from_ in galpt:
-						question = msg.text.replace(".q ","")
+						question = msg.text.replace(".q. ","")
 				if (".c. " in msg.text):
 					if msg.from_ in galpt:
-						count = msg.text.replace(".c ","")
+						count = msg.text.replace(".c. ","")
     				if msg.text == ".qsend.":
 					if msg.from_ in galpt:
         					data.ask_question_galpt(question, int(count))
