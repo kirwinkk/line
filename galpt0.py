@@ -3,7 +3,7 @@ from LineAlpha import LineClient
 from LineAlpha.LineApi import LineTracer
 from LineAlpha.LineThrift.ttypes import Message
 from LineAlpha.LineThrift.TalkService import Client
-import time, datetime, random ,sys, re, string, os, json, codecs, threading, glob, subprocess
+import time, datetime, random ,sys, re, string, os, json, codecs, threading, glob, subprocess, webbrowser, ConfigParser
 import base64, mechanize, tweepy
 
 reload(sys)
@@ -150,9 +150,9 @@ class AskFM1:
 
     def format_eta(self, eta):
         if eta > 60:
-            return "ETA: " + str(eta / 60) + "M"
+            return "ETA: " + str(eta / 60) + "m"
         else:
-            return "ETA: " + str(eta) + "S"
+            return "ETA: " + str(eta) + "s"
 
 class AskFM2:
     def __init__(self, username, delay=5):
@@ -179,9 +179,9 @@ class AskFM2:
 
     def format_eta(self, eta):
         if eta > 60:
-            return "ETA: " + str(eta / 60) + "M"
+            return "ETA: " + str(eta / 60) + "m"
         else:
-            return "ETA: " + str(eta) + "S"
+            return "ETA: " + str(eta) + "s"
 
 def SEND_MESSAGE(op):
 	global username
