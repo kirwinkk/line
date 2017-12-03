@@ -176,7 +176,7 @@ def SEND_MESSAGE(op):
 		   dec = msg.text.replace(".dec ","")
 		   sendMessage(msg.to, dec.decode('base64','strict'))
 		if msg.text == ".askfm":
-			sendMessage(msg.to, "FORMAT\n======\n[.u {username}] ~ Enter the username\n[.q {question}] ~ Enter the question to be asked\[.qsend] ~ Send question\n[.chkfmt] ~ Check information")
+			sendMessage(msg.to, "FORMAT\n======\n[.u {username}] ~ Enter the username\n[.q {question}] ~ Enter the question to be asked\n[.qsend] ~ Send question\n[.chkfmt] ~ Check information")
 		if (".u " in msg.text):
 			username = msg.text.replace(".u ","")
 			data = AskFM(username)
