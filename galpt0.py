@@ -31,7 +31,7 @@ pije = ["u00a6fde34d6ead9de4e67b5b81d4a1de"]
 babori = ["u1ffd9a4ea001ba26dbbc18eb14eba497"]
 saorej = ["u192b4dab6ca0077b74cb3f866f732bb6"]
 amri = ["ud8c0a304522704b36e502e9e52c6aa0d"]
-hen³ = ["uf8eb3d02fa19a4add5acf25cee675d48"]
+henkubik = ["uf8eb3d02fa19a4add5acf25cee675d48"]
 
 setTime = {}
 setTime = wait["setTime"]
@@ -200,7 +200,7 @@ def SEND_MESSAGE(op):
         	if msg.toType == 0:
             		if msg.contentType == 0:
                 		if msg.text == ".mid":
-					if msg.from_ in galpt, odim, gojaj, pije, babori, saorej, amri, hen³:
+					if msg.from_ in galpt, odim, gojaj, pije, babori, saorej, amri, henkubik:
                     				sendMessage(msg.to, msg.to)
 					else:
 						sendMessage(msg.to, msg.to)
