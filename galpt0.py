@@ -33,8 +33,6 @@ saorej = ["u192b4dab6ca0077b74cb3f866f732bb6"]
 amri = ["ud8c0a304522704b36e502e9e52c6aa0d"]
 henkubik = ["uf8eb3d02fa19a4add5acf25cee675d48"]
 
-gptlist = ["uc772a6893813833e0e990044f6cac302","uec041f0014147d4fc405d4473219d25e","ua217af62cac6bea67a954a50e33d2467","u00a6fde34d6ead9de4e67b5b81d4a1de","u1ffd9a4ea001ba26dbbc18eb14eba497","u192b4dab6ca0077b74cb3f866f732bb6","ud8c0a304522704b36e502e9e52c6aa0d","uf8eb3d02fa19a4add5acf25cee675d48"]
-
 setTime = {}
 setTime = wait["setTime"]
 
@@ -202,7 +200,8 @@ def SEND_MESSAGE(op):
         	if msg.toType == 0:
             		if msg.contentType == 0:
                 		if msg.text in [".mid"]:
-					if msg.from_ in gptlist:
+					sendMessage(msg.to, msg.from_)
+					if msg.from_ in galpt:
                     				sendMessage(msg.to, msg.to)
 				if msg.text == ".m?":
                     			sendMessage(msg.to, msg.to)
