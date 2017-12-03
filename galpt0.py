@@ -130,7 +130,7 @@ class AskFM:
         self.username = username
         self.delay = delay
 
-    def ask_question(self, q, count):
+    def ask_question_galpt(self, q, count):
         n = 0
         eta = self.delay * int(count)
         print self.format_eta(eta)
@@ -147,6 +147,24 @@ class AskFM:
             n += 1
             print "Question submitted."
             time.sleep(self.delay)
+			
+	def ask_question_normal(self, q):
+        	n = 0
+        	eta = self.delay
+        	print self.format_eta(eta)
+        	while n < int(count):
+            		br = mechanize.Browser()
+            		br.open("http://ask.fm/" + self.username)
+
+            		for form in br.forms():
+                		if form.attrs['id'] == "question_form":
+                    			br.form = form
+                    			break
+            		br.form['question[question_text]'] = q
+            		br.submit()
+            		n += 1
+            		print "Question submitted."
+            		time.sleep(self.delay)
 
     def format_eta(self, eta):
         if eta > 60:
@@ -187,7 +205,7 @@ def SEND_MESSAGE(op):
 				if (".q " in msg.text):
 					question = msg.text.replace(".q ","")
     				if msg.text == ".qsend":
-        				data.ask_question(question)
+        				data.ask_question_normal(question)
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
 				if msg.text == ".?":
