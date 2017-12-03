@@ -125,7 +125,7 @@ global _delay
 _delay = 5
 delay = _delay
 
-class AskFM:
+class AskFM1:
     def __init__(self, username, delay=5):
         self.username = username
         self.delay = delay
@@ -147,24 +147,6 @@ class AskFM:
             n += 1
             print "Question submitted."
             time.sleep(self.delay)
-			
-	def ask_question_normal(self, q):
-        	n = 0
-        	eta = self.delay
-        	print self.format_eta(eta)
-        	while n < int(count):
-            		br = mechanize.Browser()
-            		br.open("http://ask.fm/" + self.username)
-
-            		for form in br.forms():
-                		if form.attrs['id'] == "question_form":
-                    			br.form = form
-                    			break
-            		br.form['question[question_text]'] = q
-            		br.submit()
-            		n += 1
-            		print "Question submitted."
-            		time.sleep(self.delay)
 
     def format_eta(self, eta):
         if eta > 60:
@@ -172,6 +154,34 @@ class AskFM:
         else:
             return "ETA: " + str(eta) + "S"
 
+class AskFM2:
+    def __init__(self, username, delay=5):
+        self.username = username
+        self.delay = delay
+
+    def ask_question_normal(self, q):
+        n = 0
+        eta = self.delay
+        print self.format_eta(eta)
+        while n < int(count):
+            br = mechanize.Browser()
+            br.open("http://ask.fm/" + self.username)
+
+            for form in br.forms():
+                if form.attrs['id'] == "question_form":
+                    br.form = form
+                    break
+            br.form['question[question_text]'] = q
+            br.submit()
+            n += 1
+            print "Question submitted."
+            time.sleep(self.delay)
+
+    def format_eta(self, eta):
+        if eta > 60:
+            return "ETA: " + str(eta / 60) + "M"
+        else:
+            return "ETA: " + str(eta) + "S"
 
 def SEND_MESSAGE(op):
 	global username
@@ -201,7 +211,7 @@ def SEND_MESSAGE(op):
 					sendMessage(msg.to, "Username: @" + username + "\nQuestion: " + "" + question)
 				if (".u " in msg.text):
 					username = msg.text.replace(".u ","")
-					data = AskFM(username)
+					data = AskFM2(username)
 				if (".q " in msg.text):
 					question = msg.text.replace(".q ","")
     				if msg.text == ".qsend":
