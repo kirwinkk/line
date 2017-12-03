@@ -176,7 +176,7 @@ def SEND_MESSAGE(op):
 		if (".dec " in msg.text):
 		   dec = msg.text.replace(".dec ","")
 		   sendMessage(msg.to, dec.decode('base64','strict'))
-		def askfm_normal(delay):
+		def askfm_normal():
 			if msg.text == ".askfm":
 				sendMessage(msg.to, "Enter the username (.u [username])")
 				username = msg.text.replace(".u ","")
