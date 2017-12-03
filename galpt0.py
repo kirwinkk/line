@@ -176,20 +176,18 @@ def SEND_MESSAGE(op):
 		   dec = msg.text.replace(".dec ","")
 		   sendMessage(msg.to, dec.decode('base64','strict'))
 		if msg.text == ".askfm":
-			sendMessage(msg.to, "Enter the username (.u [username])")
-			if (".u " in msg.text):
-				username = msg.text.replace(".u ","")
-				data = AskFM(username)
-				sendMessage(msg.to, "Enter the question to be asked (.q [question])")
-				if (".q " in msg.text):
-					question = msg.text.replace(".q ","")
-					sendMessage(msg.to, "Username: @" + username + "\nQuestion: " + "" + question + "\n\nContinue? (.y/.n)")
-    					if msg.text == ".y":
-        					data.ask_question(question)
-    					elif msg.text == ".n":
-        					sendMessage(msg.to, "Aborted.")
-    					else:
-        					sendMessage(msg.to, "Unrecognized character(s).")
+			sendMessage(msg.to, "FORMAT\n======\n[.u {username}] ~ Enter the username\n[.q {question}] ~ Enter the question to be asked\[.qsend] ~ Send question\n[.chkfmt] ~ Check information")
+		if (".u " in msg.text):
+			username = msg.text.replace(".u ","")
+			data = AskFM(username)
+		if (".q " in msg.text):
+			question = msg.text.replace(".q ","")
+		if msg.text == ".chkfmt":
+			sendMessage(msg.to, "Username: @" + username + "\nQuestion: " + "" + question)
+    		if msg.text == ".qsend":
+        		data.ask_question(question)
+    		else:
+        		sendMessage(msg.to, "Unrecognized character(s).")
 		if msg.text == ".about":
 			sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
 		if msg.text == ".?":
