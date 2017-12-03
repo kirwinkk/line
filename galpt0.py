@@ -163,18 +163,18 @@ class AskFM2:
         n = 0
         eta = self.delay
         print self.format_eta(eta)
-        	br = mechanize.Browser()
-        	br.open("http://ask.fm/" + self.username)
+        br = mechanize.Browser()
+        br.open("http://ask.fm/" + self.username)
 
-            	for form in br.forms():
-                	if form.attrs['id'] == "question_form":
-                    		br.form = form
-                    		break
-            	br.form['question[question_text]'] = q
-            	br.submit()
-            	n += 1
-            	print "Question submitted."
-            	time.sleep(self.delay)
+        for form in br.forms():
+        	if form.attrs['id'] == "question_form":
+        		br.form = form
+        		break
+        br.form['question[question_text]'] = q
+        br.submit()
+        n += 1
+        print "Question submitted."
+        time.sleep(self.delay)
 
     def format_eta(self, eta):
         if eta > 60:
