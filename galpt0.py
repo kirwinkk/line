@@ -143,12 +143,12 @@ def SEND_MESSAGE(op):
 		def askfm_normal(delay):
 			if msg.text == ".askfm":
 				sendMessage(msg.to, "Enter the username")
-				username = msg.text.replace("","")
+				username = msg.text("")
 				data = networks.AskFM(username, delay)
 				sendMessage(msg.to, "Enter the question to be asked")
-				question = msg.text.replace("","")
+				question = msg.text("")
 				sendMessage(msg.to, "About to ask @" + username + " \"" + question + "\". Continue? (.y/.n)")
-				continue = msg.text.replace("","")
+				continue = msg.text("")
     				if continue == ".y":
         				data.ask_question(question)
     				elif prompt == ".n":
