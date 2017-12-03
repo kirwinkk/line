@@ -26,9 +26,6 @@ wait = {
 
 galpt = ["uc772a6893813833e0e990044f6cac302"]
 
-global _delay
-_delay = 5
-
 setTime = {}
 setTime = wait["setTime"]
 
@@ -124,9 +121,10 @@ def RECEIVE_MESSAGE(op):
 
 tracer.addOpInterrupt(26, RECEIVE_MESSAGE)
 
-delay = _delay
-
 class AskFM:
+global _delay
+_delay = 5
+delay = _delay
     def __init__(self, username, delay=5):
         self.username = username
         self.delay = delay
@@ -178,6 +176,8 @@ def SEND_MESSAGE(op):
 		if msg.text == ".askfm":
 			sendMessage(msg.to, "FORMAT\n======\n[.u {username}] ~ Enter the username\n[.q {question}] ~ Enter the question to be asked\n[.qsend] ~ Send question\n[.chkfmt] ~ Check information")
 		if (".u " in msg.text):
+			global username
+			global data
 			username = msg.text.replace(".u ","")
 			data = AskFM(username)
 		if (".q " in msg.text):
