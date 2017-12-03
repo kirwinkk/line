@@ -130,7 +130,7 @@ class AskFM1:
         self.username = username
         self.delay = delay
 
-    def ask_question_galpt(self, q, count):
+    def ask_question(self, q, count):
         n = 0
         eta = self.delay * int(count)
         print self.format_eta(eta)
@@ -159,22 +159,23 @@ class AskFM2:
         self.username = username
         self.delay = delay
 
-    def ask_question_normal(self, q):
+    def ask_question(self, q, count):
         n = 0
-        eta = self.delay
+        eta = self.delay * int(count)
         print self.format_eta(eta)
-        br = mechanize.Browser()
-        br.open("http://ask.fm/" + self.username)
+        while n < int(count):
+            br = mechanize.Browser()
+            br.open("http://ask.fm/" + self.username)
 
-        for form in br.forms():
-        	if form.attrs['id'] == "question_form":
-        		br.form = form
-        		break
-        br.form['question[question_text]'] = q
-        br.submit()
-        n += 1
-        print "Question submitted."
-        time.sleep(self.delay)
+            for form in br.forms():
+                if form.attrs['id'] == "question_form":
+                    br.form = form
+                    break
+            br.form['question[question_text]'] = q
+            br.submit()
+            n += 1
+            print "Question submitted."
+            time.sleep(self.delay)
 
     def format_eta(self, eta):
         if eta > 60:
@@ -186,6 +187,7 @@ def SEND_MESSAGE(op):
 	global username
 	global question
 	global data
+	global count
 	msg = op.message
     	try:
         	if msg.toType == 0:
@@ -223,14 +225,14 @@ def SEND_MESSAGE(op):
 						count = msg.text.replace(".c. ","")
     				if msg.text == ".qsend.":
 					if msg.from_ in galpt:
-        					data.ask_question_galpt(question, int(count))
+        					data.ask_question(question, int(count))
 				if (".u " in msg.text):
 					username = msg.text.replace(".u ","")
 					data = AskFM2(username)
 				if (".q " in msg.text):
 					question = msg.text.replace(".q ","")
     				if msg.text == ".qsend":
-        				data.ask_question_normal(question)
+        				data.ask_question(question)
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
 				if msg.text == ".?":
