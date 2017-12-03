@@ -313,7 +313,7 @@ def RECEIVE_MESSAGE(op):
     except Exception as error:
         print error
         print ("\n\nRECEIVE_MESSAGE\n\n")
-        return
+        return msg
 
 tracer.addOpInterrupt(26, RECEIVE_MESSAGE)
 
