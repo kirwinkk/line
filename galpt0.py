@@ -33,7 +33,7 @@ saorej = ["u192b4dab6ca0077b74cb3f866f732bb6"]
 amri = ["ud8c0a304522704b36e502e9e52c6aa0d"]
 henkubik = ["uf8eb3d02fa19a4add5acf25cee675d48"]
 
-gptlist = ("galpt", "odim", "gojaj", "pije", "babori", "saorej", "amri", "henkubik")
+gptlist = ('galpt', 'odim', 'gojaj', 'pije', 'babori', 'saorej', 'amri', 'henkubik')
 
 setTime = {}
 setTime = wait["setTime"]
