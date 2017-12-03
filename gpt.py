@@ -3,10 +3,9 @@ from LineAlpha import LineClient
 from LineAlpha.LineApi import LineTracer
 from LineAlpha.LineThrift.ttypes import Message
 from LineAlpha.LineThrift.TalkService import Client
-import time, datetime, random ,sys, re, string, os, json, codecs, threading, glob, subprocess
-import base64
 import LINETCR
 from LINETCR.lib.curve.ttypes import *
+import time, datetime, random ,sys, re, string, os, json, codecs, threading, glob, subprocess, base64
 
 cl = LINETCR.LINE() #gal.pt
 cl.login(qr=True)
