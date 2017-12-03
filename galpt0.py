@@ -331,10 +331,10 @@ def RECEIVE_MESSAGE(op):
             			pass
                	else:
                    	pass
-      	except:
+      	    except:
                	pass
-       else:
-           pass
+        else:
+            pass
    except KeyboardInterrupt:
 	      sys.exit(0)
    except Exception as error:
