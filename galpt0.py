@@ -147,7 +147,7 @@ def SEND_MESSAGE(op):
 				data = networks.AskFM(username, delay)
 				sendMessage(msg.to, "Enter the question to be asked")
 				question = msg.text.replace("","")
-				sendMessage(msg.to, "About to ask @" + username + " \"" + question. Continue? (.y/.n)")
+				sendMessage(msg.to, "About to ask @" + username + "" + question. Continue? (.y/.n)")
 				continue = msg.text.replace("","")
     				if continue == ".y":
         				data.ask_question(question)
