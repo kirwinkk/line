@@ -156,47 +156,46 @@ class AskFM:
 
 
 def SEND_MESSAGE(op):
-    msg = op.message
-    try:
-        if msg.toType == 0:
-            if msg.contentType == 0:
-                if msg.text == ".mid":
-                    sendMessage(msg.to, msg.to)
-                if msg.text == ".me":
-                    sendMessage(msg.to, text=None, contentMetadata={'mid': msg.from_}, contentType=13)
-                if msg.text == ".gift":
-                    sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
-		if msg.text == ".time":
-                    sendMessage(msg.to, datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S'))
-		if (".enc " in msg.text):
-		   enc = msg.text.replace(".enc ","")
-		   sendMessage(msg.to, enc.encode('base64','strict'))
-		if (".dec " in msg.text):
-		   dec = msg.text.replace(".dec ","")
-		   sendMessage(msg.to, dec.decode('base64','strict'))
-		if msg.text == ".askfm":
-			sendMessage(msg.to, "FORMAT\n======\n[.u {username}] ~ Enter the username\n[.q {question}] ~ Enter the question to be asked\n[.qsend] ~ Send question\n[.chkfmt] ~ Check information")
-		if msg.text == ".chkfmt":
-			sendMessage(msg.to, "Username: @" + username + "\nQuestion: " + "" + question)
-		if (".u " in msg.text):
-			global username
-			global data
-			username = msg.text.replace(".u ","")
-			data = AskFM(username)
-		if (".q " in msg.text):
-			global question
-			question = msg.text.replace(".q ","")
-    		if msg.text == ".qsend":
-			global data
-        		data.ask_question(question)
-		if msg.text == ".about":
-			sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
-		if msg.text == ".?":
-			sendMessage(msg.to, "COMMANDS\n[.?]\n======\n\nPRIVATE\n======\n[.mid] ~ Show MID\n[.me] ~ Show your own contact\n[.gift] ~ Send a gift\n[.time] ~ Show current time\n[(dot)enc] ~ Encode text message\n[(dot)dec] ~ Decode text message\n[.askfm] ~ Ask ask.fm user\n[.about] ~ Show script's information\n[.?] ~ Show commands\n\nPUBLIC\n======\n[.mid] ~ Show your own MID\n[.gid] ~ Show the group's ID\n[.ginfo] ~ Show the group's info\n[.gname] ~ Change the group's name\n[.gurl] ~ Show the group's URL\n[.gopen] ~ Enable invite to group by URL\n[.gclose] ~ Disable invite to group by URL\n[.ginv] ~ Invite to group using MID\n[.gcancel] ~ Cancel all the group's pending invitations\n[.me] ~ Show your own contact\n[.show] ~ Show a contact by MID\n[.time] ~ Show current time\n[.gift] ~ Send a gift\n[.gtag] ~ Tag all the group's members\n[.about] ~ Show script's information\n[.s] ~ Set a ReadPoint to a group\n[.r] ~ Show reads using the last ReadPoint\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " {gal.pt}")
-                else:
-                    pass
-            else:
-                pass
+	global username
+	global question
+	global data
+	msg = op.message
+    	try:
+        	if msg.toType == 0:
+            		if msg.contentType == 0:
+                		if msg.text == ".mid":
+                    			sendMessage(msg.to, msg.to)
+                		if msg.text == ".me":
+                    			sendMessage(msg.to, text=None, contentMetadata={'mid': msg.from_}, contentType=13)
+                		if msg.text == ".gift":
+                    			sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
+				if msg.text == ".time":
+                    			sendMessage(msg.to, datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S'))
+				if (".enc " in msg.text):
+		   			enc = msg.text.replace(".enc ","")
+		   			sendMessage(msg.to, enc.encode('base64','strict'))
+				if (".dec " in msg.text):
+		   			dec = msg.text.replace(".dec ","")
+		   			sendMessage(msg.to, dec.decode('base64','strict'))
+				if msg.text == ".askfm":
+					sendMessage(msg.to, "FORMAT\n======\n[.u {username}] ~ Enter the username\n[.q {question}] ~ Enter the question to be asked\n[.qsend] ~ Send question\n[.chkfmt] ~ Check information")
+				if msg.text == ".chkfmt":
+					sendMessage(msg.to, "Username: @" + username + "\nQuestion: " + "" + question)
+				if (".u " in msg.text):
+					username = msg.text.replace(".u ","")
+					data = AskFM(username)
+				if (".q " in msg.text):
+					question = msg.text.replace(".q ","")
+    				if msg.text == ".qsend":
+        				data.ask_question(question)
+				if msg.text == ".about":
+					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
+				if msg.text == ".?":
+					sendMessage(msg.to, "COMMANDS\n[.?]\n======\n\nPRIVATE\n======\n[.mid] ~ Show MID\n[.me] ~ Show your own contact\n[.gift] ~ Send a gift\n[.time] ~ Show current time\n[(dot)enc] ~ Encode text message\n[(dot)dec] ~ Decode text message\n[.askfm] ~ Ask ask.fm user\n[.about] ~ Show script's information\n[.?] ~ Show commands\n\nPUBLIC\n======\n[.mid] ~ Show your own MID\n[.gid] ~ Show the group's ID\n[.ginfo] ~ Show the group's info\n[.gname] ~ Change the group's name\n[.gurl] ~ Show the group's URL\n[.gopen] ~ Enable invite to group by URL\n[.gclose] ~ Disable invite to group by URL\n[.ginv] ~ Invite to group using MID\n[.gcancel] ~ Cancel all the group's pending invitations\n[.me] ~ Show your own contact\n[.show] ~ Show a contact by MID\n[.time] ~ Show current time\n[.gift] ~ Send a gift\n[.gtag] ~ Tag all the group's members\n[.about] ~ Show script's information\n[.s] ~ Set a ReadPoint to a group\n[.r] ~ Show reads using the last ReadPoint\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " {gal.pt}")
+                		else:
+                    			pass
+            		else:
+                		pass
         if msg.toType == 2:
             if msg.contentType == 0:
                 if msg.text == ".mid":
