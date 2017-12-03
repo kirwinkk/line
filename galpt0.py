@@ -121,10 +121,11 @@ def RECEIVE_MESSAGE(op):
 
 tracer.addOpInterrupt(26, RECEIVE_MESSAGE)
 
-class AskFM:
 global _delay
 _delay = 5
 delay = _delay
+
+class AskFM:
     def __init__(self, username, delay=5):
         self.username = username
         self.delay = delay
