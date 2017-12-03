@@ -203,9 +203,9 @@ def SEND_MESSAGE(op):
             		if msg.contentType == 0:
                 		if msg.text in [".mid"]:
 					if msg.from_ in gptlist:
-                    				client.sendMessage(msg.to, msg.to)
+                    				sendMessage(msg.to, msg.to)
 					else:
-						client.sendMessage(msg.to, msg.to)
+						sendMessage(msg.to, msg.to)
 				if msg.text == ".m?":
                     			sendMessage(msg.to, msg.to)
                 		if msg.text == ".me":
