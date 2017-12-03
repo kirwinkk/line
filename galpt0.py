@@ -202,10 +202,22 @@ def SEND_MESSAGE(op):
                     			sendMessage(msg.to, datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S'))
 				if (".enc " in msg.text):
 		   			enc = msg.text.replace(".enc ","")
-		   			sendMessage(msg.to, enc.encode('base64','strict'))
+					enc0 = enc.encode('base64','strict')
+					enc1 = enc0.encode('base64','strict')
+					enc2 = enc1.encode('base64','strict')
+					enc3 = enc2.encode('base64','strict')
+					enc4 = enc3.encode('base64','strict')
+					enc5 = enc4.encode('base64','strict')
+		   			sendMessage(msg.to, "" + enc5)
 				if (".dec " in msg.text):
 		   			dec = msg.text.replace(".dec ","")
-		   			sendMessage(msg.to, dec.decode('base64','strict'))
+					dec0 = dec.encode('base64','strict')
+					dec1 = dec0.encode('base64','strict')
+					dec2 = dec1.encode('base64','strict')
+					dec3 = dec2.encode('base64','strict')
+					dec4 = dec3.encode('base64','strict')
+					dec5 = dec4.encode('base64','strict')
+		   			sendMessage(msg.to, "" + dec5)
 				if msg.text == ".askfm":
 					sendMessage(msg.to, "FORMAT\n======\n[.u {username}] ~ Enter the username\n[.q {question}] ~ Enter the question to be asked\n[.qsend] ~ Send question\n[.chkfmt] ~ Check information")
 				if msg.text == ".chkfmt":
