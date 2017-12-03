@@ -9,7 +9,6 @@
 ##
 
 import sys, os, time, webbrowser, ConfigParser
-from instagram.client import InstagramAPI
 import tweepy
 import mechanize
 
