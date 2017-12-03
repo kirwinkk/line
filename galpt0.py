@@ -26,9 +26,8 @@ wait = {
 
 galpt = ["uc772a6893813833e0e990044f6cac302"]
 
-_delay = 5
-
 global _delay
+_delay = 5
 
 setTime = {}
 setTime = wait["setTime"]
