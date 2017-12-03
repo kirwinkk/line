@@ -12,26 +12,6 @@ sys.setdefaultencoding('utf-8')
 client = LineClient()
 client._qrLogin("line://au/q/")
 
-client1 = LineClient()
-
-client2 = LineClient()
-
-client3 = LineClient()
-
-client4 = LineClient()
-
-client5 = LineClient()
-
-client6 = LineClient()
-
-client7 = LineClient()
-
-client8 = LineClient()
-
-client9 = LineClient()
-
-client10 = LineClient()
-
 profile, setting, tracer = client.getProfile(), client.getSettings(), LineTracer(client)
 offbot, messageReq, wordsArray, waitingAnswer = [], {}, {}, {}
 
@@ -160,66 +140,6 @@ def SEND_MESSAGE(op):
 		if (".dec " in msg.text):
 		   dec = msg.text.replace(".dec ","")
 		   sendMessage(msg.to, dec.decode('base64','strict'))
-		if msg.text == ".log1":
-			if msg.from_ in galpt:
-				sendMessage(msg.to, "" + client1._qrLogin("line://au/q/"))
-				profile, setting, tracer = client1.getProfile(), client1.getSettings(), LineTracer(client1)
-				offbot, messageReq, wordsArray, waitingAnswer = [], {}, {}, {}
-				sendMessage(msg.to, "" + client1._loginresult())
-		if msg.text == ".log2":
-			if msg.from_ in galpt:
-				sendMessage(msg.to, "" + client2._qrLogin("line://au/q/"))
-				profile, setting, tracer = client2.getProfile(), client2.getSettings(), LineTracer(client2)
-				offbot, messageReq, wordsArray, waitingAnswer = [], {}, {}, {}
-				sendMessage(msg.to, "" + client2._loginresult())
-		if msg.text == ".log3":
-			if msg.from_ in galpt:
-				sendMessage(msg.to, "" + client3._qrLogin("line://au/q/"))
-				profile, setting, tracer = client3.getProfile(), client3.getSettings(), LineTracer(client3)
-				offbot, messageReq, wordsArray, waitingAnswer = [], {}, {}, {}
-				sendMessage(msg.to, "" + client3._loginresult())
-		if msg.text == ".log4":
-			if msg.from_ in galpt:
-				sendMessage(msg.to, "" + client4._qrLogin("line://au/q/"))
-				profile, setting, tracer = client4.getProfile(), client4.getSettings(), LineTracer(client4)
-				offbot, messageReq, wordsArray, waitingAnswer = [], {}, {}, {}
-				sendMessage(msg.to, "" + client4._loginresult())
-		if msg.text == ".log5":
-			if msg.from_ in galpt:
-				sendMessage(msg.to, "" + client5._qrLogin("line://au/q/"))
-				profile, setting, tracer = client5.getProfile(), client5.getSettings(), LineTracer(client5)
-				offbot, messageReq, wordsArray, waitingAnswer = [], {}, {}, {}
-				sendMessage(msg.to, "" + client5._loginresult())
-		if msg.text == ".log6":
-			if msg.from_ in galpt:
-				sendMessage(msg.to, "" + client6._qrLogin("line://au/q/"))
-				profile, setting, tracer = client6.getProfile(), client6.getSettings(), LineTracer(client6)
-				offbot, messageReq, wordsArray, waitingAnswer = [], {}, {}, {}
-				sendMessage(msg.to, "" + client6._loginresult())
-		if msg.text == ".log7":
-			if msg.from_ in galpt:
-				sendMessage(msg.to, "" + client7._qrLogin("line://au/q/"))
-				profile, setting, tracer = client7.getProfile(), client7.getSettings(), LineTracer(client7)
-				offbot, messageReq, wordsArray, waitingAnswer = [], {}, {}, {}
-				sendMessage(msg.to, "" + client7._loginresult())
-		if msg.text == ".log8":
-			if msg.from_ in galpt:
-				sendMessage(msg.to, "" + client8._qrLogin("line://au/q/"))
-				profile, setting, tracer = client8.getProfile(), client8.getSettings(), LineTracer(client8)
-				offbot, messageReq, wordsArray, waitingAnswer = [], {}, {}, {}
-				sendMessage(msg.to, "" + client8._loginresult())
-		if msg.text == ".log9":
-			if msg.from_ in galpt:
-				sendMessage(msg.to, "" + client9._qrLogin("line://au/q/"))
-				profile, setting, tracer = client9.getProfile(), client9.getSettings(), LineTracer(client9)
-				offbot, messageReq, wordsArray, waitingAnswer = [], {}, {}, {}
-				sendMessage(msg.to, "" + client9._loginresult())
-		if msg.text == ".log10":
-			if msg.from_ in galpt:
-				sendMessage(msg.to, "" + client10._qrLogin("line://au/q/"))
-				profile, setting, tracer = client10.getProfile(), client10.getSettings(), LineTracer(client10)
-				offbot, messageReq, wordsArray, waitingAnswer = [], {}, {}, {}
-				sendMessage(msg.to, "" + client10._loginresult())
 		if msg.text == ".about":
 			sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
 		if msg.text == ".?":
