@@ -26,8 +26,12 @@ wait = {
 
 galpt = ["uc772a6893813833e0e990044f6cac302"]
 odim = ["uec041f0014147d4fc405d4473219d25e"]
-
-bots = [odim, "uc772a6893813833e0e990044f6cac302"]
+gojaj = ["ua217af62cac6bea67a954a50e33d2467"]
+pije = ["u00a6fde34d6ead9de4e67b5b81d4a1de"]
+babori = ["u1ffd9a4ea001ba26dbbc18eb14eba497"]
+saorej = ["u192b4dab6ca0077b74cb3f866f732bb6"]
+amri = ["ud8c0a304522704b36e502e9e52c6aa0d"]
+hen³ = ["uf8eb3d02fa19a4add5acf25cee675d48"]
 
 setTime = {}
 setTime = wait["setTime"]
