@@ -160,6 +160,7 @@ def SEND_MESSAGE(op):
         				sendMessage(msg.to, "Aborted.")
     				else:
         				sendMessage(msg.to, "Unrecognized character(s). Restarting.")
+					askfm_normal()
     				sendMessage(msg.to, "Done.")
 		if msg.text == ".about":
 			sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
