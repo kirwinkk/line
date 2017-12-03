@@ -202,7 +202,7 @@ def SEND_MESSAGE(op):
         	if msg.toType == 0:
             		if msg.contentType == 0:
                 		if msg.text in [".mid"]:
-					if msg.from_ in [galpt, odim, gojaj, pije, babori, saorej, amri, henkubik]:
+					if msg.from_ in [galpt,odim,gojaj,pije,babori,saorej,amri,henkubik]:
                     				sendMessage(msg.to, msg.to)
 				if msg.text == ".m?":
                     			sendMessage(msg.to, msg.to)
