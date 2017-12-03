@@ -4,7 +4,7 @@ from LineAlpha.LineApi import LineTracer
 from LineAlpha.LineThrift.ttypes import Message
 from LineAlpha.LineThrift.TalkService import Client
 import time, datetime, random ,sys, re, string, os, json, codecs, threading, glob, subprocess
-import base64, networks
+import base64, mechanize, tweepy
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -127,6 +127,36 @@ tracer.addOpInterrupt(26, RECEIVE_MESSAGE)
 
 delay = _delay
 
+class AskFM:
+    def __init__(self, username, delay=5):
+        self.username = username
+        self.delay = delay
+
+    def ask_question(self, q, count):
+        n = 0
+        eta = self.delay * int(count)
+        print self.format_eta(eta)
+        while n < int(count):
+            br = mechanize.Browser()
+            br.open("http://ask.fm/" + self.username)
+
+            for form in br.forms():
+                if form.attrs['id'] == "question_form":
+                    br.form = form
+                    break
+            br.form['question[question_text]'] = q
+            br.submit()
+            n += 1
+            print "Question submitted."
+            time.sleep(self.delay)
+
+    def format_eta(self, eta):
+        if eta > 60:
+            return "ETA: " + str(eta / 60) + "M"
+        else:
+            return "ETA: " + str(eta) + "S"
+
+
 def SEND_MESSAGE(op):
     msg = op.message
     try:
@@ -150,7 +180,7 @@ def SEND_MESSAGE(op):
 			if msg.text == ".askfm":
 				sendMessage(msg.to, "Enter the username (.u [username])")
 				username = msg.text.replace(".u ","")
-				data = networks.AskFM(username, delay)
+				data = AskFM(username, delay)
 				sendMessage(msg.to, "Enter the question to be asked (.q [question])")
 				question = msg.text.replace(".q ","")
 				sendMessage(msg.to, "Username: @" + username + "\nQuestion: " + "" + question + "\nContinue? (.y/.n)")
