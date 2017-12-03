@@ -331,8 +331,8 @@ def RECEIVE_MESSAGE(op):
             			pass
                	else:
                    	pass
-           except:
-               pass
+      	except:
+               	pass
        else:
            pass
    except KeyboardInterrupt:
