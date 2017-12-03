@@ -41,9 +41,9 @@ def sendMessage(to, text, contentMetadata={}, contentType=0):
     mes.to, mes.from_ = to, profile.mid
     mes.text = text
     mes.contentType, mes.contentMetadata = contentType, contentMetadata
-    if to not in messageReq:
-        messageReq[to] = -1
-    messageReq[to] += 1
+    	if to not in messageReq:
+        	messageReq[to] = -1
+    	messageReq[to] += 1
 	client._client.sendMessage(messageReq[to], mes)
 
 def NOTIFIED_ADD_CONTACT(op):
