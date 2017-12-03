@@ -142,13 +142,13 @@ def SEND_MESSAGE(op):
 		   sendMessage(msg.to, dec.decode('base64','strict'))
 		def askfm_normal(delay):
 			if msg.text == ".askfm":
-				sendMessage(msg.to, "Enter the username")
-				username = msg.text.replace("","")
+				sendMessage(msg.to, "Enter the username (.u [username])")
+				username = msg.text.replace(".u ","")
 				data = networks.AskFM(username, delay)
-				sendMessage(msg.to, "Enter the question to be asked")
-				question = msg.text.replace("","")
+				sendMessage(msg.to, "Enter the question to be asked (.q [question])")
+				question = msg.text.replace(".q ","")
 				sendMessage(msg.to, "About to ask @" + username + "\n(" + "" + question + ")" + ".Continue? (.y/.n)")
-				continue = msg.text.replace("","")
+				continue = msg.text.replace(".c ","")
     				if continue == ".y":
         				data.ask_question(question)
     				elif prompt == ".n":
