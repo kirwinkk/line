@@ -262,7 +262,7 @@ def SEND_MESSAGE(op):
         				data.ask_question(question)
 				if msg.text == ".chk1":
 					if msg.from_ in galpt:
-						odim.sendText(msg.to, "ok")
+						odim.sendMessage(msg.to, "ok")
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
 				if msg.text == ".?":
