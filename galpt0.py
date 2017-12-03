@@ -148,7 +148,7 @@ def SEND_MESSAGE(op):
 				sendMessage(msg.to, "Enter the question to be asked")
 				question = msg.text.replace("")
 				sendMessage(msg.to, "About to ask @" + username + " \"" + question + "\". Continue? (.y/.n)")
-				continue = msg.text.replace("").lower()
+				continue = msg.text.replace("")
     				if continue == ".y":
         				data.ask_question(question)
     				elif prompt == "n":
