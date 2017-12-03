@@ -131,7 +131,6 @@ class AskFM1:
         self.delay = delay
 
     def ask_question(self, q, count):
-        n = 0
         eta = self.delay * int(count)
         print self.format_eta(eta)
         while n < int(count):
@@ -144,7 +143,6 @@ class AskFM1:
                     break
             br.form['question[question_text]'] = q
             br.submit()
-            n += 1
             print "Question submitted."
             time.sleep(self.delay)
 
