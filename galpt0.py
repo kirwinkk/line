@@ -145,8 +145,8 @@ class AskFM1:
             br.form['question[question_text]'] = q
             br.submit()	
 	n += 1
-            print "Question submitted."
-            time.sleep(self.delay)
+        print "Question submitted."
+        time.sleep(self.delay)
 
     def format_eta(self, eta):
         if eta > 60:
@@ -174,8 +174,8 @@ class AskFM2:
             br.form['question[question_text]'] = q
             br.submit()
 	n += 1
-            print "Question submitted."
-            time.sleep(self.delay)
+        print "Question submitted."
+        time.sleep(self.delay)
 
     def format_eta(self, eta):
         if eta > 60:
