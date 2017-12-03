@@ -309,10 +309,9 @@ def RECEIVE_MESSAGE(op):
         	else:
             		pass
     except KeyboardInterrupt:
-	   sys.exit(0)
+	   pass
     except Exception as error:
-        print error
-        print ("\n\nRECEIVE_MESSAGE\n\n")
+        pass
         return msg
 
 tracer.addOpInterrupt(26, RECEIVE_MESSAGE)
