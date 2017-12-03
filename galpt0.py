@@ -26,8 +26,6 @@ wait = {
 
 galpt = ["uc772a6893813833e0e990044f6cac302"]
 odim = ["uec041f0014147d4fc405d4473219d25e"]
-odim0 = odim.getProfile().mid
-odim1 = odim.getSettings()
 
 bots = [odim0, "uc772a6893813833e0e990044f6cac302"]
 
@@ -262,7 +260,7 @@ def SEND_MESSAGE(op):
         				data.ask_question(question)
 				if msg.text == ".chk1":
 					if msg.from_ in galpt:
-						odim0.sendText(msg.to, "ok")
+						odim.sendText(msg.to, "ok")
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
 				if msg.text == ".?":
