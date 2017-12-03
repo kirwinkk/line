@@ -143,7 +143,7 @@ def SEND_MESSAGE(op):
 		if msg.text == ".askfm":
 			sendMessage(msg.to, "Enter the username (.u [username])")
 			username = msg.text.replace(".u ","")
-				data = networks.AskFM(username)
+			data = networks.AskFM(username)
 				sendMessage(msg.to, "Enter the question to be asked (.q [question])")
 				question = msg.text.replace(".q ","")
 					sendMessage(msg.to, "About to ask @" + username + "\n(" + "" + question + ")" + ".Continue? (.y/.n)")
