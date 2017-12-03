@@ -27,7 +27,7 @@ wait = {
 galpt = ["uc772a6893813833e0e990044f6cac302"]
 odim = ["uec041f0014147d4fc405d4473219d25e"]
 
-bots = [odim0, "uc772a6893813833e0e990044f6cac302"]
+bots = [odim, "uc772a6893813833e0e990044f6cac302"]
 
 setTime = {}
 setTime = wait["setTime"]
