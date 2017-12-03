@@ -4,7 +4,7 @@ from LineAlpha.LineApi import LineTracer
 from LineAlpha.LineThrift.ttypes import Message
 from LineAlpha.LineThrift.TalkService import Client
 import LINETCR
-from LINETCR.lib.curve.ttypes import *
+from LINETCR.lib.curve.ttypes import LineService
 import time, datetime, random ,sys, re, string, os, json, codecs, threading, glob, subprocess, base64
 
 cl = LINETCR.LINE() #gal.pt
