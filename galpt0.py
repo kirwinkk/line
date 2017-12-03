@@ -211,29 +211,22 @@ def SEND_MESSAGE(op):
 				if (".u. " in msg.text):
 					if msg.from_ in galpt:
 						username = msg.text.replace(".u ","")
-						global username
 						data = AskFM1(username)
 				if (".q. " in msg.text):
 					if msg.from_ in galpt:
 						question = msg.text.replace(".q ","")
 				if (".c. " in msg.text):
 					if msg.from_ in galpt:
-						question = msg.text.replace(".c ","")
+						count = msg.text.replace(".c ","")
     				if msg.text == ".qsend.":
 					if msg.from_ in galpt:
-						global question
-						global data
-						global count
         					data.ask_question_galpt(question, int(count))
 				if (".u " in msg.text):
 					username = msg.text.replace(".u ","")
-					global username
 					data = AskFM2(username)
 				if (".q " in msg.text):
 					question = msg.text.replace(".q ","")
     				if msg.text == ".qsend":
-					global question
-					global data
         				data.ask_question_normal(question)
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
