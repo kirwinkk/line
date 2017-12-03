@@ -37,10 +37,10 @@ setTime = {}
 setTime = wait["setTime"]
 
 def sendMessage(to, text, contentMetadata={}, contentType=0):
-    mes = Message()
-    mes.to, mes.from_ = to, profile.mid
-    mes.text = text
-    mes.contentType, mes.contentMetadata = contentType, contentMetadata
+    	mes = Message()
+    	mes.to, mes.from_ = to, profile.mid
+    	mes.text = text
+    	mes.contentType, mes.contentMetadata = contentType, contentMetadata
     	if to not in messageReq:
         	messageReq[to] = -1
     	messageReq[to] += 1
