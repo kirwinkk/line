@@ -33,7 +33,7 @@ saorej = ["u192b4dab6ca0077b74cb3f866f732bb6"]
 amri = ["ud8c0a304522704b36e502e9e52c6aa0d"]
 henkubik = ["uf8eb3d02fa19a4add5acf25cee675d48"]
 
-gptlist = [galpt, odim, gojaj, pije, babori, saorej, amri, henkubik]
+gptlist = [galpt and odim]
 
 setTime = {}
 setTime = wait["setTime"]
@@ -202,7 +202,7 @@ def SEND_MESSAGE(op):
         	if msg.toType == 0:
             		if msg.contentType == 0:
                 		if msg.text in [".mid"]:
-					if msg.from_ in [galpt,odim,gojaj,pije,babori,saorej,amri,henkubik]:
+					if msg.from_ in gptlist:
                     				sendMessage(msg.to, msg.to)
 				if msg.text == ".m?":
                     			sendMessage(msg.to, msg.to)
