@@ -186,8 +186,6 @@ def SEND_MESSAGE(op):
 			sendMessage(msg.to, "Username: @" + username + "\nQuestion: " + "" + question)
     		if msg.text == ".qsend":
         		data.ask_question(question)
-    		else:
-        		sendMessage(msg.to, "Unrecognized character(s).")
 		if msg.text == ".about":
 			sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
 		if msg.text == ".?":
