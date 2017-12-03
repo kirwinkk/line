@@ -179,7 +179,7 @@ def SEND_MESSAGE(op):
 			sendMessage(msg.to, "Enter the username (.u [username])")
 			if (".u " in msg.text):
 				username = msg.text.replace(".u ","")
-				data = AskFM(username, delay)
+				data = AskFM(username)
 				sendMessage(msg.to, "Enter the question to be asked (.q [question])")
 				if (".q " in msg.text):
 					question = msg.text.replace(".q ","")
