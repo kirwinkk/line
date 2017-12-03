@@ -176,6 +176,8 @@ def SEND_MESSAGE(op):
 		   sendMessage(msg.to, dec.decode('base64','strict'))
 		if msg.text == ".askfm":
 			sendMessage(msg.to, "FORMAT\n======\n[.u {username}] ~ Enter the username\n[.q {question}] ~ Enter the question to be asked\n[.qsend] ~ Send question\n[.chkfmt] ~ Check information")
+		if msg.text == ".chkfmt":
+			sendMessage(msg.to, "Username: @" + username + "\nQuestion: " + "" + question)
 		if (".u " in msg.text):
 			global username
 			global data
@@ -184,8 +186,6 @@ def SEND_MESSAGE(op):
 		if (".q " in msg.text):
 			global question
 			question = msg.text.replace(".q ","")
-		if msg.text == ".chkfmt":
-			sendMessage(msg.to, "Username: @" + username + "\nQuestion: " + "" + question)
     		if msg.text == ".qsend":
 			global data
         		data.ask_question(question)
