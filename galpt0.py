@@ -118,223 +118,196 @@ def RECEIVE_MESSAGE(op):
                	pass
         else:
             pass
-		if msg.text == ".mid":
-                	sendMessage(msg.to, msg.to)
-		if msg.text == ".m?":
-                    	sendMessage(msg.to, msg.to)
-                if msg.text == ".me":
-                    	sendMessage(msg.to, text=None, contentMetadata={'mid': msg.from_}, contentType=13)
-                if msg.text == ".gift":
-                    	sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
-		if msg.text in [".time"]:
-                    	sendMessage(msg.to, datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S'))
-		if (".enc " in msg.text):
-		   	enc = msg.text.replace(".enc ","")
-			enc0 = enc.encode('base64','strict')
-			enc1 = enc0.encode('base64','strict')
-			enc2 = enc1.encode('base64','strict')
-			enc3 = enc2.encode('base64','strict')
-			enc4 = enc3.encode('base64','strict')
-			enc5 = enc4.encode('base64','strict')
-			enc6 = enc5.encode('base64','strict')
-			enc7 = enc6.encode('base64','strict')
-			enc8 = enc7.encode('base64','strict')
-			enc9 = enc8.encode('base64','strict')
-			enc10 = enc9.encode('base64','strict')
-		   	sendMessage(msg.to, "" + enc10)
-		if (".dec " in msg.text):
-		   	dec = msg.text.replace(".dec ","")
-			dec0 = dec.decode('base64','strict')
-			dec1 = dec0.decode('base64','strict')
-			dec2 = dec1.decode('base64','strict')
-			dec3 = dec2.decode('base64','strict')
-			dec4 = dec3.decode('base64','strict')
-			dec5 = dec4.decode('base64','strict')
-			dec6 = dec5.decode('base64','strict')
-			dec7 = dec6.decode('base64','strict')
-			dec8 = dec7.decode('base64','strict')
-			dec9 = dec8.decode('base64','strict')
-			dec10 = dec9.decode('base64','strict')
-		   	sendMessage(msg.to, "" + dec10)
-		if msg.text == ".askfm":
-			sendMessage(msg.to, "FORMAT\n======\n[.u {username}] ~ Enter the username\n[.q {question}] ~ Enter the question to be asked\n[.qsend] ~ Send question\n[.chkfmt] ~ Check information")
-		if msg.text == ".chkfmt":
-			sendMessage(msg.to, "Username: @" + username + "\nQuestion: " + "" + question)
-		if msg.text == ".chkfmt.":
-			if msg.from_ in galpt:
-				sendMessage(msg.to, "Username: @" + username + "\nQuestion: " + "" + question + "\nTotal: " + "" + count)
-		if (".u. " in msg.text):
-			if msg.from_ in galpt:
-				username = msg.text.replace(".u. ","")
-				data = AskFM1(username)
-		if (".q. " in msg.text):
-			if msg.from_ in galpt:
-				question = msg.text.replace(".q. ","")
-		if (".c. " in msg.text):
-			if msg.from_ in galpt:
-				count = msg.text.replace(".c. ","")
-    		if msg.text == ".qsend.":
-			if msg.from_ in galpt:
-        			data.ask_question(question, int(count))
-		if (".u " in msg.text):
-			username = msg.text.replace(".u ","")
-			data = AskFM2(username)
-		if (".q " in msg.text):
-			question = msg.text.replace(".q ","")
-    		if msg.text == ".qsend":
-        		data.ask_question(question)
-		if msg.text == ".about":
-			sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
-		if msg.text == ".?":
-			sendMessage(msg.to, "COMMANDS\n[.?]\n======\n\nPRIVATE\n======\n[.mid] ~ Show MID\n[.me] ~ Show your own contact\n[.gift] ~ Send a gift\n[.time] ~ Show current time\n[(dot)enc] ~ Encode text message\n[(dot)dec] ~ Decode text message\n[.about] ~ Show script's information\n[.?] ~ Show commands\n\nPUBLIC\n======\n[.mid] ~ Show your own MID\n[.gid] ~ Show the group's ID\n[.ginfo] ~ Show the group's info\n[.gname] ~ Change the group's name\n[.gurl] ~ Show the group's URL\n[.gopen] ~ Enable invite to group by URL\n[.gclose] ~ Disable invite to group by URL\n[.ginv] ~ Invite to group using MID\n[.gcancel] ~ Cancel all the group's pending invitations\n[.me] ~ Show your own contact\n[.show] ~ Show a contact by MID\n[.time] ~ Show current time\n[.gift] ~ Send a gift\n[.gtag] ~ Tag all the group's members\n[.about] ~ Show script's information\n[.s] ~ Set a ReadPoint to a group\n[.r] ~ Show reads using the last ReadPoint\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " {gal.pt}")
-                else:
-                    pass
-		if msg.toType == 2:
-        		if msg.contentType == 0:
-                		if msg.text == ".mid":
-                    			sendMessage(msg.to, msg.from_)
-                		if msg.text == ".gid":
-                    			sendMessage(msg.to, msg.to)
-                		if msg.text == ".ginfo":
-                    			group = client.getGroup(msg.to)
-                    			md = "[Group Name]\n" + group.name + "\n\n[GID]\n" + group.id + "\n\n[Group Picture]\nhttp://dl.profile.line-cdn.net/" + group.pictureStatus
-                    			if group.preventJoinByTicket is False: md += "\n\nInvitation URL: Permitted\n"
-                    			else: md += "\n\nInvitation URL: Refused\n"
-                    			if group.invitee is None: md += "\nMembers: " + str(len(group.members)) + "\n\nInviting: 0"
-                    			else: md += "\nMembers: " + str(len(group.members)) + "\nInvited: " + str(len(group.invitee)) + ""
-                    			sendMessage(msg.to,md)
-                		if (".gname " in msg.text):
-					if msg.from_ in galpt:
-						if msg.toType == 2:
-							X = client.getGroup(msg.to)
-							X.name = msg.text.replace(".gname ","")
-							client.updateGroup(X)
-						else:
-							client.sendText(msg.to,"0")
-                		if msg.text == ".gurl":
-                    			sendMessage(msg.to,"line://ti/g/" + client._client.reissueGroupTicket(msg.to))
-                		if msg.text == ".gopen":
-                    			group = client.getGroup(msg.to)
-                    			if group.preventJoinByTicket == False:
-                        			sendMessage(msg.to, "0")
-                    			else:
-                        			group.preventJoinByTicket = False
-                        			client.updateGroup(group)
-                        			sendMessage(msg.to, "1")
-                		if msg.text == ".gclose":
-                    			group = client.getGroup(msg.to)
-                    			if group.preventJoinByTicket == True:
-                        			sendMessage(msg.to, "0")
-                    			else:
-                        			group.preventJoinByTicket = True
-                        			client.updateGroup(group)
-                        			sendMessage(msg.to, "1")
-                		if ".k" in msg.text:
-                    			if msg.from_ in galpt:
-		    				nk0 = msg.text.replace(".k ","")
-		    				nk1 = nk0.lstrip()
-		    				nk2 = nk1.replace("@","")
-		    				nk3 = nk2.rstrip()
-		    				_name = nk3
-		    				gs = client.getGroup(msg.to)
-		    				targets = []
-		    				for s in gs.members:
-							if _name in s.displayName:
-			    					targets.append(s.mid)
-		    					if targets == []:
-								pass
-		    					else:
-								for target in targets:
-			    						try:
-										client.kickoutFromGroup(msg.to,[target])
-										print (msg.to,[g.mid])
-			    						except:
-										client.sendText(msg.to,"1")
-                		if msg.text == ".gcancel":
-                    			group = client.getGroup(msg.to)
-                    			if group.invitee is None:
-                        			sendMessage(op.message.to, "No one is inviting.")
-                    			else:
-                        			gInviMids = [contact.mid for contact in group.invitee]
-                        			client.cancelGroupInvitation(msg.to, gInviMids)
-                        			sendMessage(msg.to, str(len(group.invitee)) + " Done")
-                		if ".ginv " in msg.text:
-                    			key = msg.text[-33:]
-                    			client.findAndAddContactsByMid(key)
-                    			client.inviteIntoGroup(msg.to, [key])
-                    			contact = client.getContact(key)
-                		if msg.text == ".me":
-                    			M = Message()
-                    			M.to = msg.to
-                    			M.contentType = 13
-                    			M.contentMetadata = {'mid': msg.from_}
-                    			client.sendMessage(M)
-                		if ".show " in msg.text:
-                    			key = msg.text[-33:]
-                    			sendMessage(msg.to, text=None, contentMetadata={'mid': key}, contentType=13)
-                    			contact = client.getContact(key)
-                    			sendMessage(msg.to, ""+contact.displayName+"'s contact")
-                		if msg.text == ".time":
-                    			sendMessage(msg.to, datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S'))
-				if msg.text == ".gift":
-					sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
-				if msg.text == ".gtag":
-					group = client.getGroup(msg.to)
-					nama = [contact.mid for contact in group.members]
+	if msg.text == ".mid":
+                sendMessage(msg.to, msg.to)
+	if msg.text == ".m?":
+                sendMessage(msg.to, msg.to)
+        if msg.text == ".me":
+                sendMessage(msg.to, text=None, contentMetadata={'mid': msg.from_}, contentType=13)
+        if msg.text == ".gift":
+                sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
+	if msg.text in [".time"]:
+                sendMessage(msg.to, datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S'))
+	if (".enc " in msg.text):
+		enc = msg.text.replace(".enc ","")
+		enc0 = enc.encode('base64','strict')
+		enc1 = enc0.encode('base64','strict')
+		enc2 = enc1.encode('base64','strict')
+		enc3 = enc2.encode('base64','strict')
+		enc4 = enc3.encode('base64','strict')
+		enc5 = enc4.encode('base64','strict')
+		enc6 = enc5.encode('base64','strict')
+		enc7 = enc6.encode('base64','strict')
+		enc8 = enc7.encode('base64','strict')
+		enc9 = enc8.encode('base64','strict')
+		enc10 = enc9.encode('base64','strict')
+		sendMessage(msg.to, "" + enc10)
+	if (".dec " in msg.text):
+		dec = msg.text.replace(".dec ","")
+		dec0 = dec.decode('base64','strict')
+		dec1 = dec0.decode('base64','strict')
+		dec2 = dec1.decode('base64','strict')
+		dec3 = dec2.decode('base64','strict')
+		dec4 = dec3.decode('base64','strict')
+		dec5 = dec4.decode('base64','strict')
+		dec6 = dec5.decode('base64','strict')
+		dec7 = dec6.decode('base64','strict')
+		dec8 = dec7.decode('base64','strict')
+		dec9 = dec8.decode('base64','strict')
+		dec10 = dec9.decode('base64','strict')
+		sendMessage(msg.to, "" + dec10)
+	if msg.text == ".about":
+		sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
+	if msg.text == ".?":
+		sendMessage(msg.to, "COMMANDS\n[.?]\n======\n\nPRIVATE\n======\n[.mid] ~ Show MID\n[.me] ~ Show your own contact\n[.gift] ~ Send a gift\n[.time] ~ Show current time\n[(dot)enc] ~ Encode text message\n[(dot)dec] ~ Decode text message\n[.about] ~ Show script's information\n[.?] ~ Show commands\n\nPUBLIC\n======\n[.mid] ~ Show your own MID\n[.gid] ~ Show the group's ID\n[.ginfo] ~ Show the group's info\n[.gname] ~ Change the group's name\n[.gurl] ~ Show the group's URL\n[.gopen] ~ Enable invite to group by URL\n[.gclose] ~ Disable invite to group by URL\n[.ginv] ~ Invite to group using MID\n[.gcancel] ~ Cancel all the group's pending invitations\n[.me] ~ Show your own contact\n[.show] ~ Show a contact by MID\n[.time] ~ Show current time\n[.gift] ~ Send a gift\n[.gtag] ~ Tag all the group's members\n[.about] ~ Show script's information\n[.s] ~ Set a ReadPoint to a group\n[.r] ~ Show reads using the last ReadPoint\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " {gal.pt}")
+               else:
+                   pass
+	if msg.toType == 2:
+        	if msg.contentType == 0:
+                	if msg.text == ".mid":
+                    		sendMessage(msg.to, msg.from_)
+                	if msg.text == ".gid":
+                    		sendMessage(msg.to, msg.to)
+                	if msg.text == ".ginfo":
+                    		group = client.getGroup(msg.to)
+                    		md = "[Group Name]\n" + group.name + "\n\n[GID]\n" + group.id + "\n\n[Group Picture]\nhttp://dl.profile.line-cdn.net/" + group.pictureStatus
+                    		if group.preventJoinByTicket is False: md += "\n\nInvitation URL: Permitted\n"
+                    		else: md += "\n\nInvitation URL: Refused\n"
+                    		if group.invitee is None: md += "\nMembers: " + str(len(group.members)) + "\n\nInviting: 0"
+                    		else: md += "\nMembers: " + str(len(group.members)) + "\nInvited: " + str(len(group.invitee)) + ""
+                    		sendMessage(msg.to,md)
+                	if (".gname " in msg.text):
+				if msg.from_ in galpt:
+					if msg.toType == 2:
+						X = client.getGroup(msg.to)
+						X.name = msg.text.replace(".gname ","")
+						client.updateGroup(X)
+					else:
+						client.sendText(msg.to,"0")
+                	if msg.text == ".gurl":
+                    		sendMessage(msg.to,"line://ti/g/" + client._client.reissueGroupTicket(msg.to))
+                	if msg.text == ".gopen":
+                    		group = client.getGroup(msg.to)
+                    		if group.preventJoinByTicket == False:
+                        		sendMessage(msg.to, "0")
+                    		else:
+                        		group.preventJoinByTicket = False
+                        		client.updateGroup(group)
+                        		sendMessage(msg.to, "1")
+                	if msg.text == ".gclose":
+                    		group = client.getGroup(msg.to)
+                    		if group.preventJoinByTicket == True:
+                        		sendMessage(msg.to, "0")
+                    		else:
+                        		group.preventJoinByTicket = True
+                        		client.updateGroup(group)
+                        		sendMessage(msg.to, "1")
+                	if ".k" in msg.text:
+                    		if msg.from_ in galpt:
+		    			nk0 = msg.text.replace(".k ","")
+		    			nk1 = nk0.lstrip()
+		    			nk2 = nk1.replace("@","")
+		    			nk3 = nk2.rstrip()
+		    			_name = nk3
+		    			gs = client.getGroup(msg.to)
+		    			targets = []
+		    			for s in gs.members:
+						if _name in s.displayName:
+			    				targets.append(s.mid)
+		    				if targets == []:
+							pass
+		    				else:
+							for target in targets:
+			    					try:
+									client.kickoutFromGroup(msg.to,[target])
+									print (msg.to,[g.mid])
+			    					except:
+									client.sendText(msg.to,"1")
+                	if msg.text == ".gcancel":
+                    		group = client.getGroup(msg.to)
+                    		if group.invitee is None:
+                        		sendMessage(op.message.to, "No one is inviting.")
+                    		else:
+                        		gInviMids = [contact.mid for contact in group.invitee]
+                        		client.cancelGroupInvitation(msg.to, gInviMids)
+                        		sendMessage(msg.to, str(len(group.invitee)) + " Done")
+                	if ".ginv " in msg.text:
+                    		key = msg.text[-33:]
+                    		client.findAndAddContactsByMid(key)
+                    		client.inviteIntoGroup(msg.to, [key])
+                    		contact = client.getContact(key)
+                	if msg.text == ".me":
+                    		M = Message()
+                    		M.to = msg.to
+                    		M.contentType = 13
+                    		M.contentMetadata = {'mid': msg.from_}
+                    		client.sendMessage(M)
+                	if ".show " in msg.text:
+                    		key = msg.text[-33:]
+                    		sendMessage(msg.to, text=None, contentMetadata={'mid': key}, contentType=13)
+                    		contact = client.getContact(key)
+                    		sendMessage(msg.to, ""+contact.displayName+"'s contact")
+                	if msg.text == ".time":
+                    		sendMessage(msg.to, datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S'))
+			if msg.text == ".gift":
+				sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
+			if msg.text == ".gtag":
+				group = client.getGroup(msg.to)
+				nama = [contact.mid for contact in group.members]
 
-					cb = ""
-					cb2 = ""
-					strt = int(0)
-					akh = int(0)
-					for md in nama:
-		    				akh = akh + int(6)
+				cb = ""
+				cb2 = ""
+				strt = int(0)
+				akh = int(0)
+				for md in nama:
+		    			akh = akh + int(6)
 
-		    				cb += """{"S":"""+json.dumps(str(strt))+""","E":"""+json.dumps(str(akh))+""","M":"""+json.dumps(md)+"},"""
+		    			cb += """{"S":"""+json.dumps(str(strt))+""","E":"""+json.dumps(str(akh))+""","M":"""+json.dumps(md)+"},"""
 
-		    				strt = strt + int(7)
-		    				akh = akh + 1
-		    				cb2 += "@nrik \n"
+		    			strt = strt + int(7)
+		    			akh = akh + 1
+		    			cb2 += "@nrik \n"
 
-					cb = (cb[:int(len(cb)-1)])
-					msg.contentType = 0
-					msg.text = cb2
-					msg.contentMetadata ={'MENTION':'{"MENTIONEES":['+cb+']}','EMTVER':'4'}
+				cb = (cb[:int(len(cb)-1)])
+				msg.contentType = 0
+				msg.text = cb2
+				msg.contentMetadata ={'MENTION':'{"MENTIONEES":['+cb+']}','EMTVER':'4'}
 
-					try:
-		    				client.sendMessage(msg)
-					except Exception as error:
-		    				print error
-				if msg.text == ".about":
-					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
-                		if msg.text == ".s":
-                    			sendMessage(msg.to, "1")
-                    			try:
-                        			del wait['readPoint'][msg.to]
-                        			del wait['readMember'][msg.to]
-                    			except:
-                        			pass
-                    			wait['readPoint'][msg.to] = msg.id
-                    			wait['readMember'][msg.to] = ""
-                    			wait['setTime'][msg.to] = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S')
-                    			wait['ROM'][msg.to] = {}
-                    			print wait
-                		if msg.text == ".r":
-                    			if msg.to in wait['readPoint']:
-                        			if wait["ROM"][msg.to].items() == []:
-                            				chiya = ""
-                        			else:
-                            				chiya = ""
-                            				for rom in wait["ROM"][msg.to].items():
-                                				print rom
-                                				chiya += rom[1] + "\n"
+				try:
+		    			client.sendMessage(msg)
+				except Exception as error:
+		    			print error
+			if msg.text == ".about":
+				sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
+                	if msg.text == ".s":
+                    		sendMessage(msg.to, "1")
+                    		try:
+                        		del wait['readPoint'][msg.to]
+                        		del wait['readMember'][msg.to]
+                    		except:
+                        		pass
+                    		wait['readPoint'][msg.to] = msg.id
+                    		wait['readMember'][msg.to] = ""
+                    		wait['setTime'][msg.to] = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S')
+                    		wait['ROM'][msg.to] = {}
+                    		print wait
+                	if msg.text == ".r":
+                    		if msg.to in wait['readPoint']:
+                        		if wait["ROM"][msg.to].items() == []:
+                            			chiya = ""
+                        		else:
+                            			chiya = ""
+                            			for rom in wait["ROM"][msg.to].items():
+                                			print rom
+                                			chiya += rom[1] + "\n"
 
-                        			sendMessage(msg.to, "Read by %s\n\nSider(s)\n%s\nMarked:\n%s\n\nUpdated:\n" % (wait['readMember'][msg.to],chiya,setTime[msg.to]) + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S'))
-                    			else:
-                        			sendMessage(msg.to, "0")
-                		else:
-                    			pass
-        		else:
-            			pass
+                        		sendMessage(msg.to, "Read by %s\n\nSider(s)\n%s\nMarked:\n%s\n\nUpdated:\n" % (wait['readMember'][msg.to],chiya,setTime[msg.to]) + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S'))
+                    		else:
+                        		sendMessage(msg.to, "0")
+                	else:
+                    		pass
+        	else:
+            		pass
     except KeyboardInterrupt:
 	   sys.exit(0)
     except Exception as error:
