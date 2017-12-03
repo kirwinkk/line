@@ -131,7 +131,8 @@ class AskFM1:
         self.delay = delay
 
     def ask_question(self, q, count):
-        eta = self.delay * int(count)
+        n = 0
+	eta = self.delay * int(count)
         print self.format_eta(eta)
         while n < int(count):
             br = mechanize.Browser()
@@ -142,7 +143,8 @@ class AskFM1:
                     br.form = form
                     break
             br.form['question[question_text]'] = q
-            br.submit()
+            br.submit()	
+	n += 1
             print "Question submitted."
             time.sleep(self.delay)
 
@@ -171,7 +173,7 @@ class AskFM2:
                     break
             br.form['question[question_text]'] = q
             br.submit()
-            n += 1
+	n += 1
             print "Question submitted."
             time.sleep(self.delay)
 
