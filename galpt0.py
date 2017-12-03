@@ -182,10 +182,12 @@ def SEND_MESSAGE(op):
 			username = msg.text.replace(".u ","")
 			data = AskFM(username)
 		if (".q " in msg.text):
+			global question
 			question = msg.text.replace(".q ","")
 		if msg.text == ".chkfmt":
 			sendMessage(msg.to, "Username: @" + username + "\nQuestion: " + "" + question)
     		if msg.text == ".qsend":
+			global data
         		data.ask_question(question)
 		if msg.text == ".about":
 			sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
