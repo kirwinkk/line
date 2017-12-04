@@ -113,7 +113,7 @@ tracer.addOpInterrupt(55, NOTIFIED_READ_MESSAGE)
 def RECEIVE_MESSAGE(op):
     msg = op.message
     try:
-        if msg.toType == 0:
+        if msg.toType == 1:
         	if msg.contentType == 0:
 			if msg.text == ".mid":
                 		sendMessage(msg.to, msg.to)
