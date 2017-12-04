@@ -115,7 +115,7 @@ tracer.addOpInterrupt(55, NOTIFIED_READ_MESSAGE)
 def RECEIVE_MESSAGE(op):
     msg = op.message
     try:
-        if msg.toType == 5:
+        if msg.toType == 2:
         	if msg.contentType == 0:
 			if msg.text == ".mid":
                 		sendMessage(msg.to, msg.from_)
@@ -126,7 +126,7 @@ def RECEIVE_MESSAGE(op):
                 		sendMessage(msg.to, text=None, contentMetadata={'mid': msg.from_}, contentType=13)
         		if msg.text == ".gift":
                 		sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
-			if msg.text in [".time"]:
+			if msg.text == ".time":
                 		sendMessage(msg.to, datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S'))
 			if (".enc " in msg.text):
 				enc = msg.text.replace(".enc ","")
