@@ -124,10 +124,6 @@ def RECEIVE_MESSAGE(op):
                 			sendMessage(msg.to, msg.to)
         		if msg.text == ".me":
                 		sendMessage(msg.to, text=None, contentMetadata={'mid': msg.from_}, contentType=13)
-        		if msg.text == ".gift":
-                		sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
-			if msg.text == ".time":
-                		sendMessage(msg.to, datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S'))
 			if (".enc " in msg.text):
 				enc = msg.text.replace(".enc ","")
 				enc0 = enc.encode('base64','strict')
@@ -146,22 +142,6 @@ def RECEIVE_MESSAGE(op):
 				dec4 = dec3.decode('base64','strict')
 				dec5 = dec4.decode('base64','strict')
 				sendMessage(msg.to, "" + dec5)
-			if msg.text == ".ping":
-					if msg.from_ in galpt:
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-			if msg.text == ".about":
-				sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
-			if msg.text == ".?":
-				sendMessage(msg.to, "COMMANDS\n[.?]\n======\n\nPRIVATE\n======\n[.mid] ~ Show MID\n[.me] ~ Show your own contact\n[.gift] ~ Send a gift\n[.time] ~ Show current time\n[(dot)enc] ~ Encode text message\n[(dot)dec] ~ Decode text message\n[.about] ~ Show script's information\n[.?] ~ Show commands\n\nPUBLIC\n======\n[.mid] ~ Show your own MID\n[.gid] ~ Show the group's ID\n[.ginfo] ~ Show the group's info\n[.gname] ~ Change the group's name\n[.gurl] ~ Show the group's URL\n[.gopen] ~ Enable invite to group by URL\n[.gclose] ~ Disable invite to group by URL\n[.ginv] ~ Invite to group using MID\n[.gcancel] ~ Cancel all the group's pending invitations\n[.me] ~ Show your own contact\n[.show] ~ Show a contact by MID\n[.time] ~ Show current time\n[.gift] ~ Send a gift\n[.gtag] ~ Tag all the group's members\n[.about] ~ Show script's information\n[.?] ~ Show commands\n[.s] ~ Set a ReadPoint to a group\n[.r] ~ Show reads using the last ReadPoint\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " {gal.pt}")
 			else:
             			pass
 	if msg.toType == 2:
