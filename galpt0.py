@@ -39,6 +39,8 @@ derangtu = ["uf1320eafe4381c2d79a47c6011e7aabc"]
 codom = ["u1439e82d6d17e2f8f80918318882d26b"]
 planet = ["u66af891bc1ee40de4350a41eec34f250"]
 
+admin=["uc772a6893813833e0e990044f6cac302","uec041f0014147d4fc405d4473219d25e"]
+
 setTime = {}
 setTime = wait["setTime"]
 
@@ -113,7 +115,7 @@ tracer.addOpInterrupt(55, NOTIFIED_READ_MESSAGE)
 def RECEIVE_MESSAGE(op):
     msg = op.message
     try:
-        if msg.toType == 0:
+        if msg.toType == 3:
         	if msg.contentType == 0:
 			if msg.text == ".mid":
                 		sendMessage(msg.to, msg.from_)
@@ -203,7 +205,7 @@ def RECEIVE_MESSAGE(op):
                         		client.updateGroup(group)
                         		sendMessage(msg.to, "1")
                 	if ".k" in msg.text:
-                    		if msg.from_ in galpt:
+                    		if msg.from_ in admin:
 		    			nk0 = msg.text.replace(".k ","")
 		    			nk1 = nk0.lstrip()
 		    			nk2 = nk1.replace("@","")
@@ -340,76 +342,10 @@ def RECEIVE_MESSAGE(op):
         print ("\n\nRECEIVE_MESSAGE\n\n")
         return
 
-tracer.addOpInterrupt(25, RECEIVE_MESSAGE)
 tracer.addOpInterrupt(26, RECEIVE_MESSAGE)
 
-global _delay
-_delay = 5
-delay = _delay
-
-class AskFM1:
-    def __init__(self, username, delay=5):
-        self.username = username
-        self.delay = delay
-
-    def ask_question(self, q, count):
-        n = 0
-	eta = self.delay * int(count)
-        print self.format_eta(eta)
-        while n < int(count):
-            br = mechanize.Browser()
-            br.open("http://ask.fm/" + self.username)
-
-            for form in br.forms():
-                if form.attrs['id'] == "question_form":
-                    br.form = form
-                    break
-            br.form['question[question_text]'] = q
-            br.submit()	
-	n += 1
-        print "Question submitted."
-        time.sleep(self.delay)
-
-    def format_eta(self, eta):
-        if eta > 60:
-            return "ETA: " + str(eta / 60) + "m"
-        else:
-            return "ETA: " + str(eta) + "s"
-
-class AskFM2:
-    def __init__(self, username, delay=5):
-        self.username = username
-        self.delay = delay
-
-    def ask_question(self, q, count):
-        n = 0
-        eta = self.delay * int(count)
-        print self.format_eta(eta)
-        while n < int(count):
-            br = mechanize.Browser()
-            br.open("http://ask.fm/" + self.username)
-
-            for form in br.forms():
-                if form.attrs['id'] == "question_form":
-                    br.form = form
-                    break
-            br.form['question[question_text]'] = q
-            br.submit()
-	n += 1
-        print "Question submitted."
-        time.sleep(self.delay)
-
-    def format_eta(self, eta):
-        if eta > 60:
-            return "ETA: " + str(eta / 60) + "m"
-        else:
-            return "ETA: " + str(eta) + "s"
 
 def SEND_MESSAGE(op):
-	global username
-	global question
-	global data
-	global count
 	msg = op.message
     	try:
         	if msg.toType == 0:
@@ -504,7 +440,7 @@ def SEND_MESSAGE(op):
                         			client.updateGroup(group)
                         			sendMessage(msg.to, "1")
                 		if ".k" in msg.text:
-                    			if msg.from_ in galpt:
+                    			if msg.from_ in admin:
 		    				nk0 = msg.text.replace(".k ","")
 		    				nk1 = nk0.lstrip()
 		    				nk2 = nk1.replace("@","")
