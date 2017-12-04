@@ -118,40 +118,42 @@ def RECEIVE_MESSAGE(op):
                	pass
         else:
             pass
-	if msg.text == ".mid":
-                client.sendMessage(msg.to, msg.to)
-	if msg.text == ".m?":
-                sendMessage(msg.to, msg.to)
-        if msg.text == ".me":
-                sendMessage(msg.to, text=None, contentMetadata={'mid': msg.from_}, contentType=13)
-        if msg.text == ".gift":
-                sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
-	if msg.text in [".time"]:
-                sendMessage(msg.to, datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S'))
-	if (".enc " in msg.text):
-		enc = msg.text.replace(".enc ","")
-		enc0 = enc.encode('base64','strict')
-		enc1 = enc0.encode('base64','strict')
-		enc2 = enc1.encode('base64','strict')
-		enc3 = enc2.encode('base64','strict')
-		enc4 = enc3.encode('base64','strict')
-		enc5 = enc4.encode('base64','strict')
-		sendMessage(msg.to, "" + enc5)
-	if (".dec " in msg.text):
-		dec = msg.text.replace(".dec ","")
-		dec0 = dec.decode('base64','strict')
-		dec1 = dec0.decode('base64','strict')
-		dec2 = dec1.decode('base64','strict')
-		dec3 = dec2.decode('base64','strict')
-		dec4 = dec3.decode('base64','strict')
-		dec5 = dec4.decode('base64','strict')
-		sendMessage(msg.to, "" + dec5)
-	if msg.text == ".about":
-		sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
-	if msg.text == ".?":
-		sendMessage(msg.to, "COMMANDS\n[.?]\n======\n\nPRIVATE\n======\n[.mid] ~ Show MID\n[.me] ~ Show your own contact\n[.gift] ~ Send a gift\n[.time] ~ Show current time\n[(dot)enc] ~ Encode text message\n[(dot)dec] ~ Decode text message\n[.about] ~ Show script's information\n[.?] ~ Show commands\n\nPUBLIC\n======\n[.mid] ~ Show your own MID\n[.gid] ~ Show the group's ID\n[.ginfo] ~ Show the group's info\n[.gname] ~ Change the group's name\n[.gurl] ~ Show the group's URL\n[.gopen] ~ Enable invite to group by URL\n[.gclose] ~ Disable invite to group by URL\n[.ginv] ~ Invite to group using MID\n[.gcancel] ~ Cancel all the group's pending invitations\n[.me] ~ Show your own contact\n[.show] ~ Show a contact by MID\n[.time] ~ Show current time\n[.gift] ~ Send a gift\n[.gtag] ~ Tag all the group's members\n[.about] ~ Show script's information\n[.s] ~ Set a ReadPoint to a group\n[.r] ~ Show reads using the last ReadPoint\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " {gal.pt}")
-	else:
-            pass
+	if msg.toType == 0:
+        	if msg.contentType == 0:
+			if msg.text == ".mid":
+                		sendMessage(msg.to, msg.to)
+			if msg.text == ".m?":
+                		sendMessage(msg.to, msg.to)
+        		if msg.text == ".me":
+                		sendMessage(msg.to, text=None, contentMetadata={'mid': msg.from_}, contentType=13)
+        		if msg.text == ".gift":
+                		sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
+			if msg.text in [".time"]:
+                		sendMessage(msg.to, datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S'))
+			if (".enc " in msg.text):
+				enc = msg.text.replace(".enc ","")
+				enc0 = enc.encode('base64','strict')
+				enc1 = enc0.encode('base64','strict')
+				enc2 = enc1.encode('base64','strict')
+				enc3 = enc2.encode('base64','strict')
+				enc4 = enc3.encode('base64','strict')
+				enc5 = enc4.encode('base64','strict')
+				sendMessage(msg.to, "" + enc5)
+			if (".dec " in msg.text):
+				dec = msg.text.replace(".dec ","")
+				dec0 = dec.decode('base64','strict')
+				dec1 = dec0.decode('base64','strict')
+				dec2 = dec1.decode('base64','strict')
+				dec3 = dec2.decode('base64','strict')
+				dec4 = dec3.decode('base64','strict')
+				dec5 = dec4.decode('base64','strict')
+				sendMessage(msg.to, "" + dec5)
+			if msg.text == ".about":
+				sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
+			if msg.text == ".?":
+				sendMessage(msg.to, "COMMANDS\n[.?]\n======\n\nPRIVATE\n======\n[.mid] ~ Show MID\n[.me] ~ Show your own contact\n[.gift] ~ Send a gift\n[.time] ~ Show current time\n[(dot)enc] ~ Encode text message\n[(dot)dec] ~ Decode text message\n[.about] ~ Show script's information\n[.?] ~ Show commands\n\nPUBLIC\n======\n[.mid] ~ Show your own MID\n[.gid] ~ Show the group's ID\n[.ginfo] ~ Show the group's info\n[.gname] ~ Change the group's name\n[.gurl] ~ Show the group's URL\n[.gopen] ~ Enable invite to group by URL\n[.gclose] ~ Disable invite to group by URL\n[.ginv] ~ Invite to group using MID\n[.gcancel] ~ Cancel all the group's pending invitations\n[.me] ~ Show your own contact\n[.show] ~ Show a contact by MID\n[.time] ~ Show current time\n[.gift] ~ Send a gift\n[.gtag] ~ Tag all the group's members\n[.about] ~ Show script's information\n[.s] ~ Set a ReadPoint to a group\n[.r] ~ Show reads using the last ReadPoint\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " {gal.pt}")
+			else:
+            			pass
 	if msg.toType == 2:
         	if msg.contentType == 0:
                 	if msg.text == ".mid":
@@ -299,10 +301,11 @@ def RECEIVE_MESSAGE(op):
         	else:
             		pass
     except KeyboardInterrupt:
-	   pass
+	   sys.exit(0)
     except Exception as error:
-        pass
-        return msg
+        print error
+        print ("\n\nRECEIVE_MESSAGE\n\n")
+        return
 
 tracer.addOpInterrupt(26, RECEIVE_MESSAGE)
 
