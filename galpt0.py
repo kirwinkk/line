@@ -113,7 +113,7 @@ tracer.addOpInterrupt(55, NOTIFIED_READ_MESSAGE)
 def RECEIVE_MESSAGE(op):
     msg = op.message
     try:
-        if msg.toType == 1:
+        if msg.toType == 0:
         	if msg.contentType == 0:
 			if msg.text == ".mid":
                 		sendMessage(msg.to, msg.from_)
@@ -340,6 +340,7 @@ def RECEIVE_MESSAGE(op):
         print ("\n\nRECEIVE_MESSAGE\n\n")
         return
 
+tracer.addOpInterrupt(25, RECEIVE_MESSAGE)
 tracer.addOpInterrupt(26, RECEIVE_MESSAGE)
 
 global _delay
