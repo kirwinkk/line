@@ -31,7 +31,13 @@ pije = ["u00a6fde34d6ead9de4e67b5b81d4a1de"]
 babori = ["u1ffd9a4ea001ba26dbbc18eb14eba497"]
 saorej = ["u192b4dab6ca0077b74cb3f866f732bb6"]
 amri = ["ud8c0a304522704b36e502e9e52c6aa0d"]
-henkubik = ["uf8eb3d02fa19a4add5acf25cee675d48"]
+hen³ = ["uf8eb3d02fa19a4add5acf25cee675d48"]
+kejn = ["ub7532df5ac8a8933bdd7b59a4b2471c9"]
+sing = ["u6b67393450e9d405c4d207dba2f21d99"]
+jagir = ["uf9481c37801b19f8c8585c131a8ba490"]
+derangtu = ["uf1320eafe4381c2d79a47c6011e7aabc"]
+codom = ["u1439e82d6d17e2f8f80918318882d26b"]
+planet = ["u66af891bc1ee40de4350a41eec34f250"]
 
 setTime = {}
 setTime = wait["setTime"]
@@ -148,6 +154,18 @@ def RECEIVE_MESSAGE(op):
 				dec4 = dec3.decode('base64','strict')
 				dec5 = dec4.decode('base64','strict')
 				sendMessage(msg.to, "" + dec5)
+			if msg.text == ".ping":
+					if msg.from_ in galpt:
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
 			if msg.text == ".about":
 				sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
 			if msg.text == ".?":
@@ -269,6 +287,18 @@ def RECEIVE_MESSAGE(op):
 		    			client.sendMessage(msg)
 				except Exception as error:
 		    			print error
+			if msg.text == ".ping":
+					if msg.from_ in galpt:
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
 			if msg.text == ".about":
 				sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
                 	if msg.text == ".s":
@@ -408,36 +438,18 @@ def SEND_MESSAGE(op):
 					dec4 = dec3.decode('base64','strict')
 					dec5 = dec4.decode('base64','strict')
 		   			sendMessage(msg.to, "" + dec5)
-				if msg.text == ".askfm":
-					sendMessage(msg.to, "FORMAT\n======\n[.u {username}] ~ Enter the username\n[.q {question}] ~ Enter the question to be asked\n[.qsend] ~ Send question\n[.chkfmt] ~ Check information")
-				if msg.text == ".chkfmt":
-					sendMessage(msg.to, "Username: @" + username + "\nQuestion: " + "" + question)
-				if msg.text == ".chkfmt.":
+				if msg.text == ".ping":
 					if msg.from_ in galpt:
-						sendMessage(msg.to, "Username: @" + username + "\nQuestion: " + "" + question + "\nTotal: " + "" + count)
-				if (".u. " in msg.text):
-					if msg.from_ in galpt:
-						username = msg.text.replace(".u. ","")
-						data = AskFM1(username)
-				if (".q. " in msg.text):
-					if msg.from_ in galpt:
-						question = msg.text.replace(".q. ","")
-				if (".c. " in msg.text):
-					if msg.from_ in galpt:
-						count = msg.text.replace(".c. ","")
-    				if msg.text == ".qsend.":
-					if msg.from_ in galpt:
-        					data.ask_question(question, int(count))
-				if (".u " in msg.text):
-					username = msg.text.replace(".u ","")
-					data = AskFM2(username)
-				if (".q " in msg.text):
-					question = msg.text.replace(".q ","")
-    				if msg.text == ".qsend":
-        				data.ask_question(question)
-				if msg.text == ".chk1":
-					if msg.from_ in galpt:
-						odim.sendMessage(msg.to, "ok")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
 				if msg.text == ".?":
@@ -561,6 +573,18 @@ def SEND_MESSAGE(op):
 		    				client.sendMessage(msg)
 					except Exception as error:
 		    				print error
+				if msg.text == ".ping":
+					if msg.from_ in galpt:
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "p")
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
                 		if msg.text == ".s":
