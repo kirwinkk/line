@@ -117,13 +117,9 @@ def RECEIVE_MESSAGE(op):
     try:
         if msg.toType == 2:
         	if msg.contentType == 0:
-			if msg.text == ".mid":
-                		sendMessage(msg.to, msg.from_)
 			if msg.text == ".m?":
 				if msg.from_ in galpt:
                 			sendMessage(msg.to, msg.to)
-        		if msg.text == ".me":
-                		sendMessage(msg.to, text=None, contentMetadata={'mid': msg.from_}, contentType=13)
 			if (".enc " in msg.text):
 				enc = msg.text.replace(".enc ","")
 				enc0 = enc.encode('base64','strict')
