@@ -29,6 +29,7 @@ wait = {
    }
 
 galpt = ["uc772a6893813833e0e990044f6cac302"]
+gptbot = ["uf91cfb1c1b6a4cd5f5387ad6ef350a52"]
 odim = ["uec041f0014147d4fc405d4473219d25e"]
 gojaj = ["ua217af62cac6bea67a954a50e33d2467"]
 pije = ["u00a6fde34d6ead9de4e67b5b81d4a1de"]
@@ -44,7 +45,7 @@ codom = ["u1439e82d6d17e2f8f80918318882d26b"]
 planet = ["u66af891bc1ee40de4350a41eec34f250"]
 
 admin=[galpt,odim]
-admin=[galpt,odim,gojaj,pije,babori,saorej,amri,henkubik]
+daftar=[galpt,gptbot,odim,gojaj,pije,babori,saorej,amri,henkubik]
 
 setTime = {}
 setTime = wait["setTime"]
@@ -59,6 +60,27 @@ def sendMessage(to, text, contentMetadata={}, contentType=0):
     	messageReq[to] += 1
 	client._client.sendMessage(messageReq[to], mes)
 
+def bot(op):
+    try:
+	if op.type == 19: 
+          if op.param3 in galpt: #Kalo galpt ke-Kick
+            if op.param2 in daftar:
+              pass
+            if op.param2 in daftar:
+              pass
+            else:
+                random.choice(daftar).kickoutFromGroup(op.param1,[op.param2])
+                client.inviteIntoGroup(op.param1,[op.param3])
+	if op.type == 19: 
+          if op.param3 in daftar: #Kalo daftar ke-Kick
+            if op.param2 in daftar:
+              pass
+            if op.param2 in daftar:
+              pass
+            else:
+                random.choice(daftar).kickoutFromGroup(op.param1,[op.param2])
+                client.inviteIntoGroup(op.param1,[op.param3])
+		
 def NOTIFIED_ADD_CONTACT(op):
     try:
         sendMessage(op.param1, client.getContact(op.param1).displayName + " 1")
@@ -272,6 +294,13 @@ def RECEIVE_MESSAGE(op):
 						sendMessage(msg.to, "p")
 						sendMessage(msg.to, "p")
 						sendMessage(msg.to, "p")
+			if (".n " in msg.text):
+              				if msg.from_ in galpt:
+                				string = msg.text.replace(".n ","")
+                				if len(string.decode('utf-8')) <= 20:
+                    					profile = client.getProfile()
+                    					profile.displayName = string
+                    					client.updateProfile(profile)
 			if msg.text == ".about":
 				sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
                 	if msg.text == ".?":
@@ -372,6 +401,13 @@ def SEND_MESSAGE(op):
 						sendMessage(msg.to, "p")
 						sendMessage(msg.to, "p")
 						sendMessage(msg.to, "p")
+				if (".n " in msg.text):
+              				if msg.from_ in galpt:
+                				string = msg.text.replace(".n ","")
+                				if len(string.decode('utf-8')) <= 20:
+                    					profile = client.getProfile()
+                    					profile.displayName = string
+                    					client.updateProfile(profile)
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
 				if msg.text == ".?":
@@ -384,7 +420,14 @@ def SEND_MESSAGE(op):
                 		pass
         	if msg.toType == 2:
             		if msg.contentType == 0:
-                		if msg.text == ".mid":
+                		if (".n " in msg.text):
+              				if msg.from_ in galpt:
+                				string = msg.text.replace(".n ","")
+                				if len(string.decode('utf-8')) <= 20:
+                    					profile = client.getProfile()
+                    					profile.displayName = string
+                    					client.updateProfile(profile)
+				if msg.text == ".mid":
                     			sendMessage(msg.to, msg.from_)
                 		if msg.text == ".gid":
                     			sendMessage(msg.to, msg.to)
