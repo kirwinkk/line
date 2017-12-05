@@ -87,14 +87,10 @@ def nameUpdate():
                 now2 = datetime.now()
                 nowT = datetime.strftime(now2,"(%H:%M)")
                 profile = client.getProfile()
-                profile.displayName = wait["cName"]
+                profile.displayName = wait["cName"] + nowT
                 client.updateProfile(profile)
-            time.sleep(600)
         except:
             pass
-thread2 = threading.Thread(target=nameUpdate)
-thread2.daemon = True
-thread2.start()
 
 def AUTO_JOIN_GROUP(op):
 	try:
