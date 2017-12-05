@@ -109,6 +109,12 @@ def GPT_SETTINGS(op):
             			else:
                 			random.choice(daftar).kickoutFromGroup(op.param1,[op.param2])
                 			client.inviteIntoGroup(op.param1,[op.param3])
+	except Exception as e:
+        	print e
+        	print ("\n\nGPT_SETTINGS\n\n")
+        	return	
+
+tracer.addOpInterrupt(GPT_SETTINGS)
 
 def NOTIFIED_ADD_CONTACT(op):
     try:
