@@ -22,7 +22,7 @@ wait = {
     	'autoCancel':{"on":True,"members":1},
     	'leaveRoom':True,
     	'autoAdd':True,
-	"clock":True,
+	'clock':True,
     	'cName':"",
 	'readPoint':{},
     	'readMember':{},
@@ -78,7 +78,7 @@ def AUTO_ADD(op):
 	
 tracer.addOpInterrupt(5,AUTO_ADD)
 
-def nameUpdate():
+def nameUpdate(op):
     while True:
         try:
         #while a2():
@@ -87,11 +87,13 @@ def nameUpdate():
                 now2 = datetime.now()
                 nowT = datetime.strftime(now2,"(%H:%M)")
                 profile = client.getProfile()
-		name = "gaal p. "
+		name = ["gaal p. "]
                 profile.displayName(name + nowT)
                 client.updateProfile(profile)
-        except:
-            pass
+        except Exception as e:
+            	print e
+        	print ("\n\nnameUpdate\n\n")
+        	return
 thread2 = threading.Thread(target=nameUpdate)
 thread2.daemon = True
 thread2.start()
