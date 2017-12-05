@@ -81,6 +81,11 @@ def bot(op):
                 random.choice(daftar).kickoutFromGroup(op.param1,[op.param2])
                 client.inviteIntoGroup(op.param1,[op.param3])
 		
+	except Exception as e:
+        	print e
+        	print ("\n\nbot\n\n")
+        	return
+		
 def NOTIFIED_ADD_CONTACT(op):
     try:
         sendMessage(op.param1, client.getContact(op.param1).displayName + " 1")
@@ -597,3 +602,14 @@ tracer.addOpInterrupt(25,SEND_MESSAGE)
 
 while True:
     	tracer.execute()
+	
+while True:
+    try:
+        Ops = cl.fetchOps(cl.Poll.rev, 5)
+    except EOFError:
+        raise Exception("It might be wrong revision\n" + str(cl.Poll.rev))
+
+    for Op in Ops:
+        if (Op.type != OpType.END_OF_OPERATION):
+            cl.Poll.rev = max(cl.Poll.rev, Op.revision)
+            bot(Op)
