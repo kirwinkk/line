@@ -39,7 +39,8 @@ derangtu = ["uf1320eafe4381c2d79a47c6011e7aabc"]
 codom = ["u1439e82d6d17e2f8f80918318882d26b"]
 planet = ["u66af891bc1ee40de4350a41eec34f250"]
 
-admin=["uc772a6893813833e0e990044f6cac302","uec041f0014147d4fc405d4473219d25e"]
+admin=[galpt,odim]
+admin=[galpt,odim,gojaj,pije,babori,saorej,amri,henkubik]
 
 setTime = {}
 setTime = wait["setTime"]
