@@ -43,9 +43,10 @@ jagir = ["uf9481c37801b19f8c8585c131a8ba490"]
 derangtu = ["uf1320eafe4381c2d79a47c6011e7aabc"]
 codom = ["u1439e82d6d17e2f8f80918318882d26b"]
 planet = ["u66af891bc1ee40de4350a41eec34f250"]
+fersh = ["u0f426d24f2a986d1cd4272fc7a798b95"]
 
 admin=[galpt,odim]
-daftar=[galpt,gptbot,odim,gojaj,pije,babori,saorej,amri,henkubik]
+daftar=[galpt,gptbot,odim,gojaj,pije,babori,saorej,amri,henkubik,fersh]
 
 setTime = {}
 setTime = wait["setTime"]
