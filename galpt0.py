@@ -22,7 +22,7 @@ wait = {
     	'autoCancel':{"on":True,"members":1},
     	'leaveRoom':True,
     	'autoAdd':True,
-	'clock':True,
+	"clock":True,
     	'cName':"",
 	'readPoint':{},
     	'readMember':{},
@@ -87,7 +87,8 @@ def nameUpdate():
                 now2 = datetime.now()
                 nowT = datetime.strftime(now2,"(%H:%M)")
                 profile = client.getProfile()
-                profile.displayName("gaal p. " + nowT)
+		name = "gaal p. "
+                profile.displayName(name + nowT)
                 client.updateProfile(profile)
         except:
             pass
