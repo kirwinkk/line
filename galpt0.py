@@ -104,11 +104,11 @@ def GPT_SETTINGS(op):
             			client.inviteIntoGroup(op.param1,[op.param3])
 		if op.type == 19: 
           		if op.param3 in galpt: #Kalo galpt ke-Kick
-            		if op.param2 in daftar:
-              			pass
-            		else:
-                		random.choice(daftar).kickoutFromGroup(op.param1,[op.param2])
-                		client.inviteIntoGroup(op.param1,[op.param3])
+            			if op.param2 in daftar:
+              				pass
+            			else:
+                			random.choice(daftar).kickoutFromGroup(op.param1,[op.param2])
+                			client.inviteIntoGroup(op.param1,[op.param3])
 				
 tracer.addOpInterrupt(GPT_SETTINGS)
 
