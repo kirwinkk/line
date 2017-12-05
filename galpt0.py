@@ -60,39 +60,14 @@ def sendMessage(to, text, contentMetadata={}, contentType=0):
     	messageReq[to] += 1
 	client._client.sendMessage(messageReq[to], mes)
 
-def bot(op):
+		
+def NOTIFIED_ADD_CONTACT(op):
     try:
-	if op.type == 19: 
-          if op.param3 in galpt: #Kalo galpt ke-Kick
-            if op.param2 in daftar:
-              pass
-            if op.param2 in daftar:
-              pass
-            else:
-                random.choice(daftar).kickoutFromGroup(op.param1,[op.param2])
-                client.inviteIntoGroup(op.param1,[op.param3])
-	if op.type == 19: 
-          if op.param3 in daftar: #Kalo daftar ke-Kick
-            if op.param2 in daftar:
-              pass
-            if op.param2 in daftar:
-              pass
-            else:
-                random.choice(daftar).kickoutFromGroup(op.param1,[op.param2])
-                client.inviteIntoGroup(op.param1,[op.param3])
-		
-	
-
-        	print ("\n\nbot\n\n")
-        	return
-		
- def NOTIFIED_ADD_CONTACT(op):
-     try:
-         sendMessage(op.param1, client.getContact(op.param1).displayName + " 1")
-     except Exception as e:
-         print e
-         print ("\n\nNOTIFIED_ADD_CONTACT\n\n")
-         return
+        sendMessage(op.param1, client.getContact(op.param1).displayName + " 1")
+    except Exception as e:
+        print e
+        print ("\n\nNOTIFIED_ADD_CONTACT\n\n")
+        return
 
 tracer.addOpInterrupt(5,NOTIFIED_ADD_CONTACT)
 
