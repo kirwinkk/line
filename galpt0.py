@@ -131,7 +131,7 @@ tracer.addOpInterrupt(19,KICKED_MEMBER)
 
 def NOTIFIED_ADD_CONTACT(op):
     try:
-        sendMessage(op.param1, client.getContact(op.param1).displayName + " 1")
+        sendMessage(op.param1, client.getContact(op.param1).displayName + " ✅")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_ADD_CONTACT\n\n")
@@ -142,7 +142,7 @@ tracer.addOpInterrupt(5,NOTIFIED_ADD_CONTACT)
 def NOTIFIED_ACCEPT_GROUP_INVITATION(op):
     #print op
     try:
-        sendMessage(op.param1, client.getContact(op.param2).displayName + " 1")
+        sendMessage(op.param1, client.getContact(op.param2).displayName + " ✅")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_ACCEPT_GROUP_INVITATION\n\n")
@@ -152,7 +152,7 @@ tracer.addOpInterrupt(17,NOTIFIED_ACCEPT_GROUP_INVITATION)
 
 def NOTIFIED_KICKOUT_FROM_GROUP(op):
     try:
-        sendMessage(op.param1, client.getContact(op.param3).displayName + " 1")
+        sendMessage(op.param1, client.getContact(op.param3).displayName + " ✅")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_KICKOUT_FROM_GROUP\n\n")
@@ -162,7 +162,7 @@ tracer.addOpInterrupt(19,NOTIFIED_KICKOUT_FROM_GROUP)
 
 def NOTIFIED_LEAVE_GROUP(op):
     try:
-        sendMessage(op.param1, client.getContact(op.param2).displayName + " 1")
+        sendMessage(op.param1, client.getContact(op.param2).displayName + " ✅")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_LEAVE_GROUP\n\n")
@@ -186,6 +186,20 @@ def NOTIFIED_READ_MESSAGE(op):
         pass
 
 tracer.addOpInterrupt(55, NOTIFIED_READ_MESSAGE)
+
+def autolike():
+    for zx in range(0,20):
+      hasil = client.activity(limit=20)
+      if hasil['result']['posts'][zx]['postInfo']['liked'] == False:
+        try:
+          client.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1001)
+          client.comment(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],"✅")
+          print "Like"
+        except:
+          pass
+      else:
+          print "Already Liked"
+time.sleep(0.60)
 
 def RECEIVE_MESSAGE(op):
     msg = op.message
@@ -215,6 +229,13 @@ def RECEIVE_MESSAGE(op):
 				sendMessage(msg.to, "" + dec5)
 			else:
             			pass
+			if msg.text == ".like": #Ngelike Status Teman
+                		print "[Command]Like executed"
+                		sendMessage(msg.to, "✅")
+                		try:
+                  			autolike()
+                		except:
+                  			pass
 	if msg.toType == 2:
         	if msg.contentType == 0:
                 	if msg.text == ".mid":
@@ -236,25 +257,27 @@ def RECEIVE_MESSAGE(op):
 						X.name = msg.text.replace(".gname ","")
 						client.updateGroup(X)
 					else:
-						client.sendText(msg.to,"0")
+						sendMessage(msg.to,"❎")
+				else:
+					sendMessage(msg.to,"❎")
                 	if msg.text == ".gurl":
                     		sendMessage(msg.to,"line://ti/g/" + client._client.reissueGroupTicket(msg.to))
                 	if msg.text == ".gopen":
                     		group = client.getGroup(msg.to)
                     		if group.preventJoinByTicket == False:
-                        		sendMessage(msg.to, "0")
+                        		sendMessage(msg.to, "❎")
                     		else:
                         		group.preventJoinByTicket = False
                         		client.updateGroup(group)
-                        		sendMessage(msg.to, "1")
+                        		sendMessage(msg.to, "✅")
                 	if msg.text == ".gclose":
                     		group = client.getGroup(msg.to)
                     		if group.preventJoinByTicket == True:
-                        		sendMessage(msg.to, "0")
+                        		sendMessage(msg.to, "❎")
                     		else:
                         		group.preventJoinByTicket = True
                         		client.updateGroup(group)
-                        		sendMessage(msg.to, "1")
+                        		sendMessage(msg.to, "✅")
                 	if ".k" in msg.text:
                     		if msg.from_ in admin:
 		    			nk0 = msg.text.replace(".k ","")
@@ -332,16 +355,16 @@ def RECEIVE_MESSAGE(op):
 		    			print error
 			if msg.text == ".ping":
 					if msg.from_ in galpt:
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
 			if (".n " in msg.text):
               				if msg.from_ in galpt:
                 				string = msg.text.replace(".n ","")
@@ -349,12 +372,13 @@ def RECEIVE_MESSAGE(op):
                     					profile = client.getProfile()
                     					profile.displayName = string
                     					client.updateProfile(profile)
+							sendMessage(msg.to, "" + string + " ✅")
 			if msg.text == ".about":
 				sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
                 	if msg.text == ".?":
 				sendMessage(msg.to, "KEYWORDS\n[.?]\n======\n[.me] ~ Show your own contact\n[.gift] ~ Send a gift\n[.time] ~ Show current time\n[(dot)enc] ~ Encode text message\n[(dot)dec] ~ Decode text message\n[.gid] ~ Show the group's ID\n[.ginfo] ~ Show the group's info\n[.gurl] ~ Show the group's URL\n[.gopen] ~ Enable invite to group by URL\n[.gclose] ~ Disable invite to group by URL\n[.ginv] ~ Invite to group using MID\n[.gcancel] ~ Cancel all the group's pending invitations\n[.show] ~ Show a contact by MID\n[.gtag] ~ Tag all the group's members\n[.about] ~ Show script's information\n[.?] ~ Show commands\n[.s] ~ Set a ReadPoint to a group\n[.r] ~ Show reads using the last ReadPoint\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " {gal.pt}")
 			if msg.text == ".s":
-                    		sendMessage(msg.to, "1")
+                    		sendMessage(msg.to, "✅")
                     		try:
                         		del wait['readPoint'][msg.to]
                         		del wait['readMember'][msg.to]
@@ -377,7 +401,7 @@ def RECEIVE_MESSAGE(op):
 
                         		sendMessage(msg.to, "Read by %s\n\nSider(s)\n%s\nMarked:\n%s\n\nUpdated:\n" % (wait['readMember'][msg.to],chiya,setTime[msg.to]) + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S'))
                     		else:
-                        		sendMessage(msg.to, "0")
+                        		sendMessage(msg.to, "❎")
                 	else:
                     		pass
         	else:
@@ -439,16 +463,16 @@ def SEND_MESSAGE(op):
 		   			sendMessage(msg.to, "" + dec5)
 				if msg.text == ".ping":
 					if msg.from_ in galpt:
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
 				if (".n " in msg.text):
               				if msg.from_ in galpt:
                 				string = msg.text.replace(".n ","")
@@ -456,7 +480,7 @@ def SEND_MESSAGE(op):
                     					profile = client.getProfile()
                     					profile.displayName = string
                     					client.updateProfile(profile)
-							sendMessage(msg.to, "" + string + " 1")
+							sendMessage(msg.to, "" + string + " ✅")
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
 				if msg.text == ".?":
@@ -476,7 +500,7 @@ def SEND_MESSAGE(op):
                     					profile = client.getProfile()
                     					profile.displayName = string
                     					client.updateProfile(profile)
-							sendMessage(msg.to, "" + string + " 1")
+							sendMessage(msg.to, "" + string + " ✅")
 				if msg.text == ".mid":
                     			sendMessage(msg.to, msg.from_)
                 		if msg.text == ".gid":
@@ -496,25 +520,27 @@ def SEND_MESSAGE(op):
 							X.name = msg.text.replace(".gname ","")
 							client.updateGroup(X)
 						else:
-							client.sendText(msg.to,"0")
+							sendMessage(msg.to,"❎")
+					else:
+						sendMessage(msg.to,"❎")
                 		if msg.text == ".gurl":
                     			sendMessage(msg.to,"line://ti/g/" + client._client.reissueGroupTicket(msg.to))
                 		if msg.text == ".gopen":
                     			group = client.getGroup(msg.to)
                     			if group.preventJoinByTicket == False:
-                        			sendMessage(msg.to, "0")
+                        			sendMessage(msg.to, "❎")
                     			else:
                         			group.preventJoinByTicket = False
                         			client.updateGroup(group)
-                        			sendMessage(msg.to, "1")
+                        			sendMessage(msg.to, "✅")
                 		if msg.text == ".gclose":
                     			group = client.getGroup(msg.to)
                     			if group.preventJoinByTicket == True:
-                        			sendMessage(msg.to, "0")
+                        			sendMessage(msg.to, "❎")
                     			else:
                         			group.preventJoinByTicket = True
                         			client.updateGroup(group)
-                        			sendMessage(msg.to, "1")
+                        			sendMessage(msg.to, "✅")
                 		if ".k" in msg.text:
                     			if msg.from_ in admin:
 		    				nk0 = msg.text.replace(".k ","")
@@ -535,7 +561,7 @@ def SEND_MESSAGE(op):
 										client.kickoutFromGroup(msg.to,[target])
 										print (msg.to,[g.mid])
 			    						except:
-										client.sendText(msg.to,"1")
+										client.sendText(msg.to,"✅")
                 		if msg.text == ".gcancel":
                     			group = client.getGroup(msg.to)
                     			if group.invitee is None:
@@ -543,7 +569,7 @@ def SEND_MESSAGE(op):
                     			else:
                         			gInviMids = [contact.mid for contact in group.invitee]
                         			client.cancelGroupInvitation(msg.to, gInviMids)
-                        			sendMessage(msg.to, str(len(group.invitee)) + " Done")
+                        			sendMessage(msg.to, str(len(group.invitee)) + " done")
                 		if ".ginv " in msg.text:
                     			key = msg.text[-33:]
                     			client.findAndAddContactsByMid(key)
@@ -592,16 +618,16 @@ def SEND_MESSAGE(op):
 		    				print error
 				if msg.text == ".ping":
 					if msg.from_ in galpt:
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
-						sendMessage(msg.to, "p")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
+						sendMessage(msg.to, "✅")
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
                 		if msg.text == ".?":
@@ -609,7 +635,7 @@ def SEND_MESSAGE(op):
 				if msg.text == ".?.":
 					sendMessage(msg.to, "KEYWORDS\n[.?]\n======\n[.me] ~ Show your own contact\n[.gift] ~ Send a gift\n[.time] ~ Show current time\n[(dot)enc] ~ Encode text message\n[(dot)dec] ~ Decode text message\n[.gid] ~ Show the group's ID\n[.ginfo] ~ Show the group's info\n[.gurl] ~ Show the group's URL\n[.gopen] ~ Enable invite to group by URL\n[.gclose] ~ Disable invite to group by URL\n[.ginv] ~ Invite to group using MID\n[.gcancel] ~ Cancel all the group's pending invitations\n[.show] ~ Show a contact by MID\n[.gtag] ~ Tag all the group's members\n[.about] ~ Show script's information\n[.?] ~ Show commands\n[.s] ~ Set a ReadPoint to a group\n[.r] ~ Show reads using the last ReadPoint\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " {gal.pt}")
 				if msg.text == ".s":
-                    			sendMessage(msg.to, "1")
+                    			sendMessage(msg.to, "✅")
                     			try:
                         			del wait['readPoint'][msg.to]
                         			del wait['readMember'][msg.to]
@@ -632,7 +658,7 @@ def SEND_MESSAGE(op):
 
                         			sendMessage(msg.to, "Read by %s\n\nSider(s)\n%s\nMarked:\n%s\n\nUpdated:\n" % (wait['readMember'][msg.to],chiya,setTime[msg.to]) + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S'))
                     			else:
-                        			sendMessage(msg.to, "0")
+                        			sendMessage(msg.to, "❎")
                 		else:
                     			pass
         		else:
