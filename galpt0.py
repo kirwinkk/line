@@ -94,9 +94,6 @@ def nameUpdate(op):
             	print e
         	print ("\n\nnameUpdate\n\n")
         	return
-thread2 = threading.Thread(target=nameUpdate)
-thread2.daemon = True
-thread2.start()
 
 def AUTO_JOIN_GROUP(op):
 	try:
