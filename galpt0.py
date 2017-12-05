@@ -113,7 +113,7 @@ tracer.addOpInterrupt(13,AUTO_JOIN_GROUP)
 
 def KICKED_MEMBER(op):
 	try:
-        	if op.param2 not in daftar: #Kalo member ke-kick
+        	if op.param2 not in galpt: #Kalo member ke-kick
             		client.kickoutFromGroup(op.param1,[op.param2])
             		client.inviteIntoGroup(op.param1,[op.param3])
           	if op.param3 in galpt: #Kalo galpt ke-Kick
