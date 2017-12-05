@@ -60,10 +60,8 @@ def sendMessage(to, text, contentMetadata={}, contentType=0):
     	messageReq[to] += 1
 	client._client.sendMessage(messageReq[to], mes)
 
-def GPT_SETTINGS(op):
+def AUTO_ADD(op):
 	try:
-		if op.type == 0:
-			return
 		if op.type == 5:
 			if wait["autoAdd"] == True:
                 		client.findAndAddContactsByMid(op.param1)
@@ -71,48 +69,65 @@ def GPT_SETTINGS(op):
                     			pass
                 		else:
                     			client.sendText(op.param1,str(wait["message"]))
-		if op.type == 13:
-            		print op.param1
-            		print op.param2
-            		print op.param3
-            		if mid in op.param3:
-                		G = client.getGroup(op.param1)
-                		if wait["autoJoin"] == True:
-                    			if wait["autoCancel"]["on"] == True:
-                        			if len(G.members) <= wait["autoCancel"]["members"]:
-                            				client.rejectGroupInvitation(op.param1)
-                        			else:
-                            				client.acceptGroupInvitation(op.param1)
-                    			else:
-                        			client.acceptGroupInvitation(op.param1)
-                		elif wait["autoCancel"]["on"] == True:
-                    			if len(G.members) <= wait["autoCancel"]["members"]:
-                        			client.rejectGroupInvitation(op.param1)
-            		else:
-                		Inviter = op.param3.replace("",',')
-                		InviterX = Inviter.split(",")
-                		matched_list = []
-                		for tag in wait["blacklist"]:
-                    			matched_list+=filter(lambda str: str == tag, InviterX)
-                		if matched_list == []:
-                    			pass
-                		else:
-                    			client.cancelGroupInvitation(op.param1, matched_list)
-		if op.type == 19: #Member Ke-Kick
-          		if op.param2 not in daftar:
-            			client.kickoutFromGroup(op.param1,[op.param2])
-            			client.inviteIntoGroup(op.param1,[op.param3])
-		if op.type == 19: 
-          		if op.param3 in galpt: #Kalo galpt ke-Kick
-            			if op.param2 in daftar:
-              				pass
-            			else:
-                			random.choice(daftar).kickoutFromGroup(op.param1,[op.param2])
-                			client.inviteIntoGroup(op.param1,[op.param3])
 	except Exception as e:
         	print e
-        	print ("\n\nGPT_SETTINGS\n\n")
-        	return	
+        	print ("\n\nAUTO_ADD\n\n")
+        	return
+	
+tracer.addOpInterrupt(5,NOTIFIED_ADD_CONTACT)
+
+def AUTO_JOIN_GROUP(op):
+	try:
+        	print op.param1
+		print op.param2
+            	print op.param3
+            	if mid in op.param3:
+                	G = client.getGroup(op.param1)
+                	if wait["autoJoin"] == True:
+                    		if wait["autoCancel"]["on"] == True:
+                        		if len(G.members) <= wait["autoCancel"]["members"]:
+                            			client.rejectGroupInvitation(op.param1)
+                        		else:
+                            			client.acceptGroupInvitation(op.param1)
+                    		else:
+                        		client.acceptGroupInvitation(op.param1)
+                	elif wait["autoCancel"]["on"] == True:
+                    		if len(G.members) <= wait["autoCancel"]["members"]:
+                        		client.rejectGroupInvitation(op.param1)
+            			else:
+                			Inviter = op.param3.replace("",',')
+                			InviterX = Inviter.split(",")
+                			matched_list = []
+                			for tag in wait["blacklist"]:
+                    				matched_list+=filter(lambda str: str == tag, InviterX)
+                			if matched_list == []:
+                    				pass
+                			else:
+                    				client.cancelGroupInvitation(op.param1, matched_list)
+	except Exception as e:
+        	print e
+        	print ("\n\nAUTO_JOIN_GROUP\n\n")
+        	return
+	
+tracer.addOpInterrupt(13,AUTO_JOIN_GROUP)
+
+def KICKED_MEMBER(op):
+	try:
+        	if op.param2 not in daftar: #Kalo member ke-kick
+            		client.kickoutFromGroup(op.param1,[op.param2])
+            		client.inviteIntoGroup(op.param1,[op.param3])
+          	if op.param3 in galpt: #Kalo galpt ke-Kick
+            		if op.param2 in daftar:
+              			pass
+            		else:
+                		random.choice(daftar).kickoutFromGroup(op.param1,[op.param2])
+                		client.inviteIntoGroup(op.param1,[op.param3])
+	except Exception as e:
+        	print e
+        	print ("\n\nKICKED_MEMBER\n\n")
+        	return
+
+tracer.addOpInterrupt(19,KICKED_MEMBER)
 
 def NOTIFIED_ADD_CONTACT(op):
     try:
