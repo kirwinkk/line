@@ -62,19 +62,18 @@ def sendMessage(to, text, contentMetadata={}, contentType=0):
 
 def AUTO_ADD(op):
 	try:
-		if op.type == 5:
-			if wait["autoAdd"] == True:
-                		client.findAndAddContactsByMid(op.param1)
-                		if (wait["message"] in [""," ","\n",None]):
-                    			pass
-                		else:
-                    			client.sendText(op.param1,str(wait["message"]))
+		if wait["autoAdd"] == True:
+                	client.findAndAddContactsByMid(op.param1)
+                	if (wait["message"] in [""," ","\n",None]):
+                    		pass
+                	else:
+                    		client.sendText(op.param1,str(wait["message"]))
 	except Exception as e:
         	print e
         	print ("\n\nAUTO_ADD\n\n")
         	return
 	
-tracer.addOpInterrupt(5,NOTIFIED_ADD_CONTACT)
+tracer.addOpInterrupt(5,AUTO_ADD)
 
 def AUTO_JOIN_GROUP(op):
 	try:
