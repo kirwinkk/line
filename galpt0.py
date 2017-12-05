@@ -114,8 +114,6 @@ def GPT_SETTINGS(op):
         	print ("\n\nGPT_SETTINGS\n\n")
         	return	
 
-tracer.addOpInterrupt(GPT_SETTINGS)
-
 def NOTIFIED_ADD_CONTACT(op):
     try:
         sendMessage(op.param1, client.getContact(op.param1).displayName + " 1")
