@@ -86,13 +86,13 @@ def bot(op):
         	print ("\n\nbot\n\n")
         	return
 		
-def NOTIFIED_ADD_CONTACT(op):
-    try:
-        sendMessage(op.param1, client.getContact(op.param1).displayName + " 1")
-    except Exception as e:
-        print e
-        print ("\n\nNOTIFIED_ADD_CONTACT\n\n")
-        return
+ def NOTIFIED_ADD_CONTACT(op):
+     try:
+         sendMessage(op.param1, client.getContact(op.param1).displayName + " 1")
+     except Exception as e:
+         print e
+         print ("\n\nNOTIFIED_ADD_CONTACT\n\n")
+         return
 
 tracer.addOpInterrupt(5,NOTIFIED_ADD_CONTACT)
 
