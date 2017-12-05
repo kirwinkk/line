@@ -84,8 +84,7 @@ def nameUpdate(op):
         #while a2():
             #pass
             if wait["clock"] == True:
-                now2 = datetime.now()
-                nowT = datetime.strftime(now2,"(%H:%M)")
+                nowT = datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S')
                 profile = client.getProfile()
 		name = ["gaal p. "]
                 profile.displayName(name + nowT)
