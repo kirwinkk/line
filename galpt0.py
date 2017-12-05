@@ -81,8 +81,8 @@ def bot(op):
                 random.choice(daftar).kickoutFromGroup(op.param1,[op.param2])
                 client.inviteIntoGroup(op.param1,[op.param3])
 		
-	except Exception as e:
-        	print e
+	except:
+
         	print ("\n\nbot\n\n")
         	return
 		
