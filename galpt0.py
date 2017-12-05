@@ -18,10 +18,14 @@ offbot, messageReq, wordsArray, waitingAnswer = [], {}, {}, {}
 print client._loginresult()
 
 wait = {
-    'readPoint':{},
-    'readMember':{},
-    'setTime':{},
-    'ROM':{}
+    	'autoJoin':True,
+    	'autoCancel':{"on":True,"members":1},
+    	'leaveRoom':True,
+    	'autoAdd':True,
+	'readPoint':{},
+    	'readMember':{},
+    	'setTime':{},
+    	'ROM':{}
    }
 
 galpt = ["uc772a6893813833e0e990044f6cac302"]
