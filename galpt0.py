@@ -388,6 +388,7 @@ def SEND_MESSAGE(op):
                     					profile = client.getProfile()
                     					profile.displayName = string
                     					client.updateProfile(profile)
+							client.sendText(msg.to, "" + string + "1")
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
 				if msg.text == ".?":
@@ -407,6 +408,7 @@ def SEND_MESSAGE(op):
                     					profile = client.getProfile()
                     					profile.displayName = string
                     					client.updateProfile(profile)
+							client.sendText(msg.to, "" + string + "1")
 				if msg.text == ".mid":
                     			sendMessage(msg.to, msg.from_)
                 		if msg.text == ".gid":
