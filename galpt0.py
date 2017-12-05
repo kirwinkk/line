@@ -109,8 +109,6 @@ def GPT_SETTINGS(op):
             			else:
                 			random.choice(daftar).kickoutFromGroup(op.param1,[op.param2])
                 			client.inviteIntoGroup(op.param1,[op.param3])
-				
-tracer.addOpInterrupt(GPT_SETTINGS)
 
 def NOTIFIED_ADD_CONTACT(op):
     try:
