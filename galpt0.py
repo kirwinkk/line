@@ -22,6 +22,8 @@ wait = {
     	'autoCancel':{"on":True,"members":1},
     	'leaveRoom':True,
     	'autoAdd':True,
+	"clock":True,
+    	"cName":"",
 	'readPoint':{},
     	'readMember':{},
     	'setTime':{},
@@ -75,6 +77,24 @@ def AUTO_ADD(op):
         	return
 	
 tracer.addOpInterrupt(5,AUTO_ADD)
+
+def nameUpdate():
+    while True:
+        try:
+        #while a2():
+            #pass
+            if wait["clock"] == True:
+                now2 = datetime.now()
+                nowT = datetime.strftime(now2,"(%H:%M)")
+                profile = client.getProfile()
+                profile.displayName = wait["cName"]
+                client.updateProfile(profile)
+            time.sleep(600)
+        except:
+            pass
+thread2 = threading.Thread(target=nameUpdate)
+thread2.daemon = True
+thread2.start()
 
 def AUTO_JOIN_GROUP(op):
 	try:
