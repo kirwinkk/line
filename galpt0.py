@@ -99,7 +99,7 @@ def AUTO_JOIN_GROUP(op):
         	print op.param1
 		print op.param2
             	print op.param3
-            	if mid in op.param3:
+            	if group.id in op.param3:
                 	G = client.getGroup(op.param1)
                 	if wait["autoJoin"] == True:
                     		if wait["autoCancel"]["on"] == True:
