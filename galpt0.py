@@ -53,6 +53,17 @@ daftar=[galpt,gptbot,odim,gojaj,pije,babori,saorej,amri,henkubik,fersh]
 setTime = {}
 setTime = wait["setTime"]
 
+def sendMessage(to, text, contentMetadata={}, contentType=0):
+    mes = Message()
+    mes.to, mes.from_ = to, profile.mid
+    mes.text = text
+
+    mes.contentType, mes.contentMetadata = contentType, contentMetadata
+    if to not in messageReq:
+        messageReq[to] = -1
+    messageReq[to] += 1
+    client._client.sendMessage(messageReq[to], mes)
+
 def AUTO_ADD(op):
 	try:
 		if wait["autoAdd"] == True:
