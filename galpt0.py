@@ -499,7 +499,15 @@ def SEND_MESSAGE(op):
               				if msg.from_ in galpt:
                 				string = msg.text.replace(".n. ","")
                 				if len(string.decode('utf-8')) <= 20:
-                    					nameUpdate()
+                    					while True:
+								try:
+    									nowT = datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S')
+									profile = client.getProfile()
+                							profile.displayName = string + " " + nowT
+                							client.updateProfile(profile)
+									time.sleep(600)
+								except:
+        								break
 							sendMessage(msg.to, "" + string + " ✅")
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
@@ -525,7 +533,15 @@ def SEND_MESSAGE(op):
               				if msg.from_ in galpt:
                 				string = msg.text.replace(".n. ","")
                 				if len(string.decode('utf-8')) <= 20:
-                    					nameUpdate()
+                    					while True:
+								try:
+    									nowT = datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S')
+									profile = client.getProfile()
+                							profile.displayName = string + " " + nowT
+                							client.updateProfile(profile)
+									time.sleep(600)
+								except:
+        								break
 							sendMessage(msg.to, "" + string + " ✅")
 				if msg.text == ".mid":
                     			sendMessage(msg.to, msg.from_)
