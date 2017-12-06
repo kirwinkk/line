@@ -495,16 +495,14 @@ def SEND_MESSAGE(op):
                     					profile.displayName = string
                     					client.updateProfile(profile)
 							sendMessage(msg.to, "" + string + " ✅")
-				if (".n. " in msg.text):
+				if msg.text == ".n.":
               				if msg.from_ in galpt:
-                				string = msg.text.replace(".n. ","")
-                				if len(string.decode('utf-8')) <= 20:
-                    					while True:
-    								nowT = datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S')
-								profile = client.getProfile()
-                						profile.displayName = string + nowT
-                						client.updateProfile(profile)
-							sendMessage(msg.to, "" + string + " ✅")
+                    				while True:
+    							nowT = datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S')
+							profile = client.getProfile()
+                					profile.displayName = nowT
+                					client.updateProfile(profile)
+						sendMessage(msg.to, "✅")
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
 				if msg.text == ".?":
@@ -525,16 +523,14 @@ def SEND_MESSAGE(op):
                     					profile.displayName = string
                     					client.updateProfile(profile)
 							sendMessage(msg.to, "" + string + " ✅")
-				if (".n. " in msg.text):
+				if msg.text == ".n.":
               				if msg.from_ in galpt:
-                				string = msg.text.replace(".n. ","")
-                				if len(string.decode('utf-8')) <= 20:
-                    					while True:
-    								nowT = datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S')
-								profile = client.getProfile()
-                						profile.displayName = string + nowT
-                						client.updateProfile(profile)
-							sendMessage(msg.to, "" + string + " ✅")
+                    				while True:
+    							nowT = datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S')
+							profile = client.getProfile()
+                					profile.displayName = nowT
+                					client.updateProfile(profile)
+						sendMessage(msg.to, "✅")
 				if msg.text == ".mid":
                     			sendMessage(msg.to, msg.from_)
                 		if msg.text == ".gid":
