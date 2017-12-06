@@ -497,7 +497,8 @@ def SEND_MESSAGE(op):
 							sendMessage(msg.to, "" + string + " ✅")
 				if msg.text == ".n.":
               				if msg.from_ in galpt:
-                    				while True:
+                    				selamanya = 1
+						while selamanya == 1:
     							nowT = datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S')
 							profile = client.getProfile()
                 					profile.displayName = nowT
@@ -524,7 +525,8 @@ def SEND_MESSAGE(op):
 							sendMessage(msg.to, "" + string + " ✅")
 				if msg.text == ".n.":
               				if msg.from_ in galpt:
-                    				while True:
+                    				selamanya = 1
+						while selamanya == 1:
     							nowT = datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S')
 							profile = client.getProfile()
                 					profile.displayName = nowT
