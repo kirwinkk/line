@@ -19,7 +19,7 @@ print client._loginresult()
 
 wait = {
     	'autoJoin':True,
-    	'autoCancel':{"on":True,"members":1},
+    	'autoCancel':{"on":False,"members":1},
     	'leaveRoom':True,
     	'autoAdd':True,
 	'clock':True,
