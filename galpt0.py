@@ -65,12 +65,7 @@ def sendMessage(to, text, contentMetadata={}, contentType=0):
 
 def AUTO_ADD(op):
 	try:
-		if wait["autoAdd"] == True:
-                	client.findAndAddContactsByMid(op.param1)
-                	if (wait["message"] in [""," ","\n",None]):
-                    		pass
-                	else:
-                    		sendMessage(op.param1,str(wait["message"]))
+		
 	except Exception as e:
         	print e
         	print ("\n\nAUTO_ADD\n\n")
@@ -78,28 +73,23 @@ def AUTO_ADD(op):
 	
 tracer.addOpInterrupt(5,AUTO_ADD)
 
-def nameUpdate(op):
+def nameUpdate():
     while True:
-        try:
-        #while a2():
-            #pass
-            if wait["clock"] == True:
-                nowT = datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S')
-                profile = client.getProfile()
-		name = ["gaal p. "]
-                profile.displayName(name + nowT)
+	try:
+    		nowT = datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S')
+		profile = client.getProfile()
+                profile.displayName = string + " " + nowT
                 client.updateProfile(profile)
-        except Exception as e:
-            	print e
-        	print ("\n\nnameUpdate\n\n")
-        	return
+		time.sleep(600)
+	except:
+        	break
 
 def AUTO_JOIN_GROUP(op):
 	try:
         	print op.param1
 		print op.param2
             	print op.param3
-            	if group.id in op.param3:
+            	if mid in op.param3:
                 	G = client.getGroup(op.param1)
                 	if wait["autoJoin"] == True:
                     		if wait["autoCancel"]["on"] == True:
@@ -116,12 +106,6 @@ def AUTO_JOIN_GROUP(op):
                 			Inviter = op.param3.replace("",',')
                 			InviterX = Inviter.split(",")
                 			matched_list = []
-                			for tag in wait["blacklist"]:
-                    				matched_list+=filter(lambda str: str == tag, InviterX)
-                			if matched_list == []:
-                    				pass
-                			else:
-                    				client.cancelGroupInvitation(op.param1, matched_list)
 	except Exception as e:
         	print e
         	print ("\n\nAUTO_JOIN_GROUP\n\n")
@@ -150,6 +134,12 @@ tracer.addOpInterrupt(19,KICKED_MEMBER)
 def NOTIFIED_ADD_CONTACT(op):
     try:
         sendMessage(op.param1, client.getContact(op.param1).displayName + " ✅")
+	if wait["autoAdd"] == True:
+                	client.findAndAddContactsByMid(op.param1)
+                	if (wait["message"] in [""," ","\n",None]):
+                    		pass
+                	else:
+                    		sendMessage(op.param1,str(wait["message"]))
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_ADD_CONTACT\n\n")
@@ -499,6 +489,12 @@ def SEND_MESSAGE(op):
                     					profile.displayName = string
                     					client.updateProfile(profile)
 							sendMessage(msg.to, "" + string + " ✅")
+				if (".n. " in msg.text):
+              				if msg.from_ in galpt:
+                				string = msg.text.replace(".n. ","")
+                				if len(string.decode('utf-8')) <= 20:
+                    					nameUpdate()
+							sendMessage(msg.to, "" + string + " ✅")
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
 				if msg.text == ".?":
@@ -518,6 +514,12 @@ def SEND_MESSAGE(op):
                     					profile = client.getProfile()
                     					profile.displayName = string
                     					client.updateProfile(profile)
+							sendMessage(msg.to, "" + string + " ✅")
+				if (".n. " in msg.text):
+              				if msg.from_ in galpt:
+                				string = msg.text.replace(".n. ","")
+                				if len(string.decode('utf-8')) <= 20:
+                    					nameUpdate()
 							sendMessage(msg.to, "" + string + " ✅")
 				if msg.text == ".mid":
                     			sendMessage(msg.to, msg.from_)
