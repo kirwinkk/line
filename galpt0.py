@@ -56,7 +56,7 @@ setTime = wait["setTime"]
 def AUTO_ADD(op):
 	try:
 		if wait["autoAdd"] == True:
-                client.findAndAddContactsByMid(op.param1)
+                	client.findAndAddContactsByMid(op.param1)
                 if (wait["message"] in [""," ","\n",None]):
                     pass
                 else:
