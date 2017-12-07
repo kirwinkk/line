@@ -226,12 +226,12 @@ def RECEIVE_MESSAGE(op):
 				if (".enc " in msg.text):
 		   			enc = msg.text.replace(".enc ","")
 					enc0 = enc.encode('base64','strict')
-					enc1 = base64.urlsafe_b64encode(enc0)
+					enc1 = base32.encode(enc0)
 		   			sendMessage(msg.to, "" + enc1)
 				if (".dec " in msg.text):
 		   			dec = msg.text.replace(".dec ","")
-					dec0 = dec.decode('base64','strict')
-					dec1 = base64.urlsafe_b64decode(dec0)
+					dec0 = base32.decode(dec)
+					dec1 = dec0.decode('base64','strict')
 		   			sendMessage(msg.to, "" + dec1)
 			else:
             			pass
@@ -452,12 +452,12 @@ def SEND_MESSAGE(op):
 				if (".enc " in msg.text):
 		   			enc = msg.text.replace(".enc ","")
 					enc0 = enc.encode('base64','strict')
-					enc1 = base64.urlsafe_b64encode(enc0)
+					enc1 = base32.encode(enc0)
 		   			sendMessage(msg.to, "" + enc1)
 				if (".dec " in msg.text):
 		   			dec = msg.text.replace(".dec ","")
-					dec0 = dec.decode('base64','strict')
-					dec1 = base64.urlsafe_b64decode(dec0)
+					dec0 = base32.decode(dec)
+					dec1 = dec0.decode('base64','strict')
 		   			sendMessage(msg.to, "" + dec1)
 				if msg.text == ".ping":
 					if msg.from_ in galpt:
@@ -647,12 +647,12 @@ def SEND_MESSAGE(op):
 				if (".enc " in msg.text):
 		   			enc = msg.text.replace(".enc ","")
 					enc0 = enc.encode('base64','strict')
-					enc1 = base64.urlsafe_b64encode(enc0)
+					enc1 = base32.encode(enc0)
 		   			sendMessage(msg.to, "" + enc1)
 				if (".dec " in msg.text):
 		   			dec = msg.text.replace(".dec ","")
-					dec0 = dec.decode('base64','strict')
-					dec1 = base64.urlsafe_b64decode(dec0)
+					dec0 = base32.decode(dec)
+					dec1 = dec0.decode('base64','strict')
 		   			sendMessage(msg.to, "" + dec1)
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
