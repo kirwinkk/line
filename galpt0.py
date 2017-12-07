@@ -339,7 +339,7 @@ def NOTIFIED_READ_MESSAGE(op):
 
 tracer.addOpInterrupt(55, NOTIFIED_READ_MESSAGE)
 
-def translate():
+def translate(op):
 	try:
 		with Timeout(10):
     			words = msg.text.replace(".trans ","")
@@ -350,7 +350,7 @@ def translate():
 		sendMessage(msg.to,"❎ Timeout. Try again later.")
 		pass
 
-def autolike():
+def autolike(op):
     for zx in range(0,20):
       hasil = client.activity(limit=20)
       if hasil['result']['posts'][zx]['postInfo']['liked'] == False:
