@@ -3,6 +3,8 @@ from LineAlpha import LineClient
 from LineAlpha.LineApi import LineTracer
 from LineAlpha.LineThrift.ttypes import Message
 from LineAlpha.LineThrift.TalkService import Client
+from googletrans import Translator
+from mtranslate import translate
 import time, datetime, random ,sys, re, string, os, json, codecs, threading, glob, subprocess, webbrowser, ConfigParser
 import base64
 
@@ -49,6 +51,122 @@ fersh = ["u0f426d24f2a986d1cd4272fc7a798b95"]
 
 admin=[galpt,odim]
 daftar=[galpt,gptbot,odim,gojaj,pije,babori,saorej,amri,henkubik,fersh]
+
+thelp ="""
+Translate Codes
+[.thelp]
+=================
+'af': 'afrikaans',
+'sq': 'albanian',
+'am': 'amharic',
+'ar': 'arabic',
+'hy': 'armenian',
+'az': 'azerbaijani',
+'eu': 'basque',
+'be': 'belarusian',
+'bn': 'bengali',
+'bs': 'bosnian',
+'bg': 'bulgarian',
+'ca': 'catalan',
+'ceb': 'cebuano',
+'ny': 'chichewa',
+'zh-cn': 'chinese (simplified)',
+'zh-tw': 'chinese (traditional)',
+'co': 'corsican',
+'hr': 'croatian',
+'cs': 'czech',
+'da': 'danish',
+'nl': 'dutch',
+'en': 'english',
+'eo': 'esperanto',
+'et': 'estonian',
+'tl': 'filipino',
+'fi': 'finnish',
+'fr': 'french',
+'fy': 'frisian',
+'gl': 'galician',
+'ka': 'georgian',
+'de': 'german',
+'el': 'greek',
+'gu': 'gujarati',
+'ht': 'haitian creole',
+'ha': 'hausa',
+'haw': 'hawaiian',
+'iw': 'hebrew',
+'hi': 'hindi',
+'hmn': 'hmong',
+'hu': 'hungarian',
+'is': 'icelandic',
+'ig': 'igbo',
+'id': 'indonesian',
+'ga': 'irish',
+'it': 'italian',
+'ja': 'japanese',
+'jw': 'javanese',
+'kn': 'kannada',
+'kk': 'kazakh',
+'km': 'khmer',
+'ko': 'korean',
+'ku': 'kurdish (kurmanji)',
+'ky': 'kyrgyz',
+'lo': 'lao',
+'la': 'latin',
+'lv': 'latvian',
+'lt': 'lithuanian',
+'lb': 'luxembourgish',
+'mk': 'macedonian',
+'mg': 'malagasy',
+'ms': 'malay',
+'ml': 'malayalam',
+'mt': 'maltese',
+'mi': 'maori',
+'mr': 'marathi',
+'mn': 'mongolian',
+'my': 'myanmar (burmese)',
+'ne': 'nepali',
+'no': 'norwegian',
+'ps': 'pashto',
+'fa': 'persian',
+'pl': 'polish',
+'pt': 'portuguese',
+'pa': 'punjabi',
+'ro': 'romanian',
+'ru': 'russian',
+'sm': 'samoan',
+'gd': 'scots gaelic',
+'sr': 'serbian',
+'st': 'sesotho',
+'sn': 'shona',
+'sd': 'sindhi',
+'si': 'sinhala',
+'sk': 'slovak',
+'sl': 'slovenian',
+'so': 'somali',
+'es': 'spanish',
+'su': 'sundanese',
+'sw': 'swahili',
+'sv': 'swedish',
+'tg': 'tajik',
+'ta': 'tamil',
+'te': 'telugu',
+'th': 'thai',
+'tr': 'turkish',
+'uk': 'ukrainian',
+'ur': 'urdu',
+'uz': 'uzbek',
+'vi': 'vietnamese',
+'cy': 'welsh',
+'xh': 'xhosa',
+'yi': 'yiddish',
+'yo': 'yoruba',
+'zu': 'zulu',
+'fil': 'Filipino',
+'he': 'Hebrew'
+=================
+Usage:
+1) type [.tcode {translate_code}]
+2) type [.trans {words_to_translate}]
+"""
 
 setTime = {}
 setTime = wait["setTime"]
@@ -284,7 +402,7 @@ def RECEIVE_MESSAGE(op):
                         		group.preventJoinByTicket = True
                         		client.updateGroup(group)
                         		sendMessage(msg.to, "✅")
-                	if ".k" in msg.text:
+                	if ".k " in msg.text:
                     		if msg.from_ in admin:
 		    			nk0 = msg.text.replace(".k ","")
 		    			nk1 = nk0.lstrip()
@@ -379,10 +497,19 @@ def RECEIVE_MESSAGE(op):
                     					profile.displayName = string
                     					client.updateProfile(profile)
 							sendMessage(msg.to, "" + string + " ✅")
+			if msg.text == ".thelp":
+				sendMessage(msg.to, "" + thelp)
+			if (".tcode " in msg.text):
+				langcode = msg.text.replace(".tcode ","")
+				sendMessage(msg.to, "✅")
+			if (".trans " in msg.text):
+		   		words = msg.text.replace(".trans ","")
+				trans = translate(words,langcode,"auto")
+				sendMessage(msg.to, "" + trans)
 			if msg.text == ".about":
 				sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
                 	if msg.text == ".?":
-				sendMessage(msg.to, "KEYWORDS\n[.?]\n======\n[.me] ~ Show your own contact\n[.gift] ~ Send a gift\n[.time] ~ Show current time\n[(dot)enc] ~ Encode text message\n[(dot)dec] ~ Decode text message\n[.gid] ~ Show the group's ID\n[.ginfo] ~ Show the group's info\n[.gurl] ~ Show the group's URL\n[.gopen] ~ Enable invite to group by URL\n[.gclose] ~ Disable invite to group by URL\n[.ginv] ~ Invite to group using MID\n[.gcancel] ~ Cancel all the group's pending invitations\n[.show] ~ Show a contact by MID\n[.gtag] ~ Tag all the group's members\n[.about] ~ Show script's information\n[.?] ~ Show commands\n[.s] ~ Set a ReadPoint to a group\n[.r] ~ Show reads using the last ReadPoint\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " {gal.pt}")
+				sendMessage(msg.to, "KEYWORDS\n[.?]\n======\n[.me] ~ Show your own contact\n[.gift] ~ Send a gift\n[.time] ~ Show current time\n[(dot)enc] ~ Encode text message\n[(dot)dec] ~ Decode text message\n[.gid] ~ Show the group's ID\n[.ginfo] ~ Show the group's info\n[.gurl] ~ Show the group's URL\n[.gopen] ~ Enable invite to group by URL\n[.gclose] ~ Disable invite to group by URL\n[.ginv {MID}] ~ Invite to group using MID\n[.gcancel] ~ Cancel all the group's pending invitations\n[.show {MID}] ~ Show a contact by MID\n[.gtag] ~ Tag all the group's members\n[.thelp] ~ Show Translator Tips\n[.tcode {translate_code}] ~ Set Translate-To\n[.trans {words_to_translate}] ~ Translate to destination language\n[.about] ~ Show script's information\n[.?] ~ Show commands\n[.s] ~ Set a ReadPoint to a group\n[.r] ~ Show reads using the last ReadPoint\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " {gal.pt}")
 			if msg.text == ".s":
                     		sendMessage(msg.to, "✅")
                     		try:
@@ -488,19 +615,37 @@ def SEND_MESSAGE(op):
                 					profile.displayName = nowT
                 					client.updateProfile(profile)
 							time.sleep(5)
+				if msg.text == ".thelp":
+					sendMessage(msg.to, "" + thelp)
+				if (".tcode " in msg.text):
+					langcode = msg.text.replace(".tcode ","")
+					sendMessage(msg.to, "✅")
+				if (".trans " in msg.text):
+		   			words = msg.text.replace(".trans ","")
+					trans = translate(words,langcode,"auto")
+					sendMessage(msg.to, "" + trans)
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
 				if msg.text == ".?":
-					sendMessage(msg.to, "COMMANDS\n[.?]\n======\n\nPRIVATE\n======\n[.mid] ~ Show MID\n[.me] ~ Show your own contact\n[.gift] ~ Send a gift\n[.time] ~ Show current time\n[(dot)enc] ~ Encode text message\n[(dot)dec] ~ Decode text message\n[.about] ~ Show script's information\n[.?] ~ Show commands\n\nPUBLIC\n======\n[.mid] ~ Show your own MID\n[.gid] ~ Show the group's ID\n[.ginfo] ~ Show the group's info\n[.gname] ~ Change the group's name\n[.gurl] ~ Show the group's URL\n[.gopen] ~ Enable invite to group by URL\n[.gclose] ~ Disable invite to group by URL\n[.ginv] ~ Invite to group using MID\n[.gcancel] ~ Cancel all the group's pending invitations\n[.me] ~ Show your own contact\n[.show] ~ Show a contact by MID\n[.time] ~ Show current time\n[.gift] ~ Send a gift\n[.gtag] ~ Tag all the group's members\n[.about] ~ Show script's information\n[.?] ~ Show commands\n[.s] ~ Set a ReadPoint to a group\n[.r] ~ Show reads using the last ReadPoint\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " {gal.pt}")
+					sendMessage(msg.to, "COMMANDS\n[.?]\n======\n\nPRIVATE\n======\n[.mid] ~ Show MID\n[.me] ~ Show your own contact\n[.gift] ~ Send a gift\n[.time] ~ Show current time\n[(dot)enc] ~ Encode text message\n[(dot)dec] ~ Decode text message\n[.about] ~ Show script's information\n[.?] ~ Show commands\n\nPUBLIC\n======\n[.mid] ~ Show your own MID\n[.gid] ~ Show the group's ID\n[.ginfo] ~ Show the group's info\n[.gname] ~ Change the group's name\n[.gurl] ~ Show the group's URL\n[.gopen] ~ Enable invite to group by URL\n[.gclose] ~ Disable invite to group by URL\n[.ginv] ~ Invite to group using MID\n[.gcancel] ~ Cancel all the group's pending invitations\n[.me] ~ Show your own contact\n[.show] ~ Show a contact by MID\n[.time] ~ Show current time\n[.gift] ~ Send a gift\n[.gtag] ~ Tag all the group's members\n[.thelp] ~ Show Translator Tips\n[.tcode {translate_code}] ~ Set Translate-To\n[.trans {words_to_translate}] ~ Translate to destination language\n[.about] ~ Show script's information\n[.?] ~ Show commands\n[.s] ~ Set a ReadPoint to a group\n[.r] ~ Show reads using the last ReadPoint\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " {gal.pt}")
 				if msg.text == ".?.":
-					sendMessage(msg.to, "KEYWORDS\n[.?]\n======\n[.me] ~ Show your own contact\n[.gift] ~ Send a gift\n[.time] ~ Show current time\n[(dot)enc] ~ Encode text message\n[(dot)dec] ~ Decode text message\n[.gid] ~ Show the group's ID\n[.ginfo] ~ Show the group's info\n[.gurl] ~ Show the group's URL\n[.gopen] ~ Enable invite to group by URL\n[.gclose] ~ Disable invite to group by URL\n[.ginv] ~ Invite to group using MID\n[.gcancel] ~ Cancel all the group's pending invitations\n[.show] ~ Show a contact by MID\n[.gtag] ~ Tag all the group's members\n[.about] ~ Show script's information\n[.?] ~ Show commands\n[.s] ~ Set a ReadPoint to a group\n[.r] ~ Show reads using the last ReadPoint\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " {gal.pt}")
+					sendMessage(msg.to, "KEYWORDS\n[.?]\n======\n[.me] ~ Show your own contact\n[.gift] ~ Send a gift\n[.time] ~ Show current time\n[(dot)enc] ~ Encode text message\n[(dot)dec] ~ Decode text message\n[.gid] ~ Show the group's ID\n[.ginfo] ~ Show the group's info\n[.gurl] ~ Show the group's URL\n[.gopen] ~ Enable invite to group by URL\n[.gclose] ~ Disable invite to group by URL\n[.ginv] ~ Invite to group using MID\n[.gcancel] ~ Cancel all the group's pending invitations\n[.show] ~ Show a contact by MID\n[.gtag] ~ Tag all the group's members\n[.thelp] ~ Show Translator Tips\n[.tcode {translate_code}] ~ Set Translate-To\n[.trans {words_to_translate}] ~ Translate to destination language\n[.about] ~ Show script's information\n[.?] ~ Show commands\n[.s] ~ Set a ReadPoint to a group\n[.r] ~ Show reads using the last ReadPoint\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " {gal.pt}")
                 		else:
                     			pass
             		else:
                 		pass
         	if msg.toType == 2:
             		if msg.contentType == 0:
-                		if (".n " in msg.text):
+                		if msg.text == ".thelp":
+					sendMessage(msg.to, "" + thelp)
+				if (".tcode " in msg.text):
+					langcode = msg.text.replace(".tcode ","")
+					sendMessage(msg.to, "✅")
+				if (".trans " in msg.text):
+		   			words = msg.text.replace(".trans ","")
+					trans = translate(words,langcode,"auto")
+					sendMessage(msg.to, "" + trans)
+				if (".n " in msg.text):
               				if msg.from_ in galpt:
                 				string = msg.text.replace(".n ","")
                 				if len(string.decode('utf-8')) <= 20:
@@ -657,9 +802,9 @@ def SEND_MESSAGE(op):
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
                 		if msg.text == ".?":
-					sendMessage(msg.to, "COMMANDS\n[.?]\n======\n\nPRIVATE\n======\n[.mid] ~ Show MID\n[.me] ~ Show your own contact\n[.gift] ~ Send a gift\n[.time] ~ Show current time\n[(dot)enc] ~ Encode text message\n[(dot)dec] ~ Decode text message\n[.about] ~ Show script's information\n[.?] ~ Show commands\n\nPUBLIC\n======\n[.mid] ~ Show your own MID\n[.gid] ~ Show the group's ID\n[.ginfo] ~ Show the group's info\n[.gname] ~ Change the group's name\n[.gurl] ~ Show the group's URL\n[.gopen] ~ Enable invite to group by URL\n[.gclose] ~ Disable invite to group by URL\n[.ginv] ~ Invite to group using MID\n[.gcancel] ~ Cancel all the group's pending invitations\n[.me] ~ Show your own contact\n[.show] ~ Show a contact by MID\n[.time] ~ Show current time\n[.gift] ~ Send a gift\n[.gtag] ~ Tag all the group's members\n[.about] ~ Show script's information\n[.?] ~ Show commands\n[.s] ~ Set a ReadPoint to a group\n[.r] ~ Show reads using the last ReadPoint\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " {gal.pt}")
+					sendMessage(msg.to, "COMMANDS\n[.?]\n======\n\nPRIVATE\n======\n[.mid] ~ Show MID\n[.me] ~ Show your own contact\n[.gift] ~ Send a gift\n[.time] ~ Show current time\n[(dot)enc] ~ Encode text message\n[(dot)dec] ~ Decode text message\n[.about] ~ Show script's information\n[.?] ~ Show commands\n\nPUBLIC\n======\n[.mid] ~ Show your own MID\n[.gid] ~ Show the group's ID\n[.ginfo] ~ Show the group's info\n[.gname] ~ Change the group's name\n[.gurl] ~ Show the group's URL\n[.gopen] ~ Enable invite to group by URL\n[.gclose] ~ Disable invite to group by URL\n[.ginv] ~ Invite to group using MID\n[.gcancel] ~ Cancel all the group's pending invitations\n[.me] ~ Show your own contact\n[.show] ~ Show a contact by MID\n[.time] ~ Show current time\n[.gift] ~ Send a gift\n[.gtag] ~ Tag all the group's members\n[.thelp] ~ Show Translator Tips\n[.tcode {translate_code}] ~ Set Translate-To\n[.trans {words_to_translate}] ~ Translate to destination language\n[.about] ~ Show script's information\n[.?] ~ Show commands\n[.s] ~ Set a ReadPoint to a group\n[.r] ~ Show reads using the last ReadPoint\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " {gal.pt}")
 				if msg.text == ".?.":
-					sendMessage(msg.to, "KEYWORDS\n[.?]\n======\n[.me] ~ Show your own contact\n[.gift] ~ Send a gift\n[.time] ~ Show current time\n[(dot)enc] ~ Encode text message\n[(dot)dec] ~ Decode text message\n[.gid] ~ Show the group's ID\n[.ginfo] ~ Show the group's info\n[.gurl] ~ Show the group's URL\n[.gopen] ~ Enable invite to group by URL\n[.gclose] ~ Disable invite to group by URL\n[.ginv] ~ Invite to group using MID\n[.gcancel] ~ Cancel all the group's pending invitations\n[.show] ~ Show a contact by MID\n[.gtag] ~ Tag all the group's members\n[.like] ~ Like your timeline posts\n[.about] ~ Show script's information\n[.?] ~ Show commands\n[.s] ~ Set a ReadPoint to a group\n[.r] ~ Show reads using the last ReadPoint\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " {gal.pt}")
+					sendMessage(msg.to, "KEYWORDS\n[.?]\n======\n[.me] ~ Show your own contact\n[.gift] ~ Send a gift\n[.time] ~ Show current time\n[(dot)enc] ~ Encode text message\n[(dot)dec] ~ Decode text message\n[.gid] ~ Show the group's ID\n[.ginfo] ~ Show the group's info\n[.gurl] ~ Show the group's URL\n[.gopen] ~ Enable invite to group by URL\n[.gclose] ~ Disable invite to group by URL\n[.ginv] ~ Invite to group using MID\n[.gcancel] ~ Cancel all the group's pending invitations\n[.show] ~ Show a contact by MID\n[.gtag] ~ Tag all the group's members\n[.like] ~ Like your timeline posts\n[.thelp] ~ Show Translator Tips\n[.tcode {translate_code}] ~ Set Translate-To\n[.trans {words_to_translate}] ~ Translate to destination language\n[.about] ~ Show script's information\n[.?] ~ Show commands\n[.s] ~ Set a ReadPoint to a group\n[.r] ~ Show reads using the last ReadPoint\n\n" + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " {gal.pt}")
 				if msg.text == ".s":
                     			sendMessage(msg.to, "✅")
                     			try:
