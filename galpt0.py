@@ -339,7 +339,7 @@ def NOTIFIED_READ_MESSAGE(op):
 
 tracer.addOpInterrupt(55, NOTIFIED_READ_MESSAGE)
 
-def translate():
+def translate(op):
 	msg = op.message
     	global langcode
 	try:
