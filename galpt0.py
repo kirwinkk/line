@@ -339,19 +339,6 @@ def NOTIFIED_READ_MESSAGE(op):
 
 tracer.addOpInterrupt(55, NOTIFIED_READ_MESSAGE)
 
-def translate(op):
-	msg = op.message
-    	global langcode
-	try:
-		with Timeout(10):
-    			words = msg.text.replace(".trans ","")
-			trans = translate(words, langcode, 'auto')
-			sendMessage(msg.to, "" + trans)
-    			
-	except Timeout.Timeout:
-		sendMessage(msg.to,"❎ Timeout. Try again later.")
-		pass
-
 def autolike():
     for zx in range(0,20):
       hasil = client.activity(limit=20)
@@ -537,7 +524,15 @@ def RECEIVE_MESSAGE(op):
 				langcode = msg.text.replace(".tcode ","")
 				sendMessage(msg.to, "✅")
 			if (".trans " in msg.text):
-				translate()
+				try:
+					with Timeout(10):
+    					words = msg.text.replace(".trans ","")
+					trans = translate(words, langcode, 'auto')
+					sendMessage(msg.to, "" + trans)
+    			
+				except Timeout.Timeout:
+					sendMessage(msg.to,"❎ Timeout. Try again later.")
+					pass
 			if msg.text == ".about":
 				sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
                 	if msg.text == ".?":
@@ -654,7 +649,15 @@ def SEND_MESSAGE(op):
 					langcode = msg.text.replace(".tcode ","")
 					sendMessage(msg.to, "✅")
 				if (".trans " in msg.text):
-		   			translate()
+					try:
+						with Timeout(10):
+    						words = msg.text.replace(".trans ","")
+						trans = translate(words, langcode, 'auto')
+						sendMessage(msg.to, "" + trans)
+    			
+					except Timeout.Timeout:
+						sendMessage(msg.to,"❎ Timeout. Try again later.")
+						pass
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
 				if msg.text == ".?":
@@ -673,7 +676,16 @@ def SEND_MESSAGE(op):
 					langcode = msg.text.replace(".tcode ","")
 					sendMessage(msg.to, "✅")
 				if (".trans " in msg.text):
-		   			translate()
+		   			if (".trans " in msg.text):
+						try:
+							with Timeout(10):
+    							words = msg.text.replace(".trans ","")
+							trans = translate(words, langcode, 'auto')
+							sendMessage(msg.to, "" + trans)
+    			
+						except Timeout.Timeout:
+							sendMessage(msg.to,"❎ Timeout. Try again later.")
+							pass
 				if (".n " in msg.text):
               				if msg.from_ in galpt:
                 				string = msg.text.replace(".n ","")
