@@ -321,6 +321,19 @@ def NOTIFIED_READ_MESSAGE(op):
 
 tracer.addOpInterrupt(55, NOTIFIED_READ_MESSAGE)
 
+for x in range(0,3):
+    translate()
+
+def translate():
+    start = time.time()
+    while (time.time() - start < 5):
+        # do your normal function
+	words = msg.text.replace(".trans ","")
+	trans = translate(words, langcode, 'auto')
+	sendMessage(msg.to, "" + trans)
+
+    return;
+
 def autolike():
     for zx in range(0,20):
       hasil = client.activity(limit=20)
@@ -506,9 +519,7 @@ def RECEIVE_MESSAGE(op):
 				langcode = msg.text.replace(".tcode ","")
 				sendMessage(msg.to, "✅")
 			if (".trans " in msg.text):
-		   		words = msg.text.replace(".trans ","")
-				trans = translate(words, langcode, 'auto')
-				sendMessage(msg.to, "" + trans)
+				translate()
 			if msg.text == ".about":
 				sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
                 	if msg.text == ".?":
@@ -625,9 +636,7 @@ def SEND_MESSAGE(op):
 					langcode = msg.text.replace(".tcode ","")
 					sendMessage(msg.to, "✅")
 				if (".trans " in msg.text):
-		   			words = msg.text.replace(".trans ","")
-					trans = translate(words, langcode, 'auto')
-					sendMessage(msg.to, "" + trans)
+		   			translate()
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
 				if msg.text == ".?":
@@ -646,9 +655,7 @@ def SEND_MESSAGE(op):
 					langcode = msg.text.replace(".tcode ","")
 					sendMessage(msg.to, "✅")
 				if (".trans " in msg.text):
-		   			words = msg.text.replace(".trans ","")
-					trans = translate(words, langcode, 'auto')
-					sendMessage(msg.to, "" + trans)
+		   			translate()
 				if (".n " in msg.text):
               				if msg.from_ in galpt:
                 				string = msg.text.replace(".n ","")
