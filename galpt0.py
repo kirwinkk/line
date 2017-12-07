@@ -337,7 +337,7 @@ def translate():
 
     		# Terminate foo
     		p.terminate()
-    		sendMessage(msg.to,"❎")
+    		sendMessage(msg.to,"❎ Timeout. Try again later.")
 
 def autolike():
     for zx in range(0,20):
