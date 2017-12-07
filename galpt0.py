@@ -4,7 +4,7 @@ from LineAlpha.LineApi import LineTracer
 from LineAlpha.LineThrift.ttypes import Message
 from LineAlpha.LineThrift.TalkService import Client
 import time, datetime, random ,sys, re, string, os, json, codecs, threading, glob, subprocess, webbrowser, ConfigParser
-import base64, mechanize, tweepy, binascii, utf-8
+import base64, mechanize, tweepy, binascii
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
