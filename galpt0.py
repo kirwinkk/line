@@ -164,8 +164,8 @@ Translate Codes
 'he': 'Hebrew'
 =================
 Usage:
-1) type [.tcode {translate_code}]
-2) type [.trans {words_to_translate}]
+1) type [(dot)tcode {translate_code}]
+2) type [(dot)trans {words_to_translate}]
 """
 
 setTime = {}
