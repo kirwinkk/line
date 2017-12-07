@@ -4,8 +4,7 @@ from LineAlpha.LineApi import LineTracer
 from LineAlpha.LineThrift.ttypes import Message
 from LineAlpha.LineThrift.TalkService import Client
 import time, datetime, random ,sys, re, string, os, json, codecs, threading, glob, subprocess, webbrowser, ConfigParser
-import base64, mechanize, tweepy
-from cryptography.fernet import Fernet
+import base64, mechanize, tweepy, binascii
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -226,14 +225,12 @@ def RECEIVE_MESSAGE(op):
                 			sendMessage(msg.to, msg.to)
 				if (".enc " in msg.text):
 		   			enc = msg.text.replace(".enc ","")
-					key = Fernet.generate_key() #this is your "password"
 					enc0 = enc.encode('base64','strict')
-					enc1 = Fernet(key)
-					enc2 = enc1.encrypt(enc0)
-		   			sendMessage(msg.to, "" + enc2)
+					enc1 = binascii.hexlify(enc0)
+		   			sendMessage(msg.to, "" + enc1)
 				if (".dec " in msg.text):
 		   			dec = msg.text.replace(".dec ","")
-					dec0 = enc1.decrypt(enc0)
+					dec0 = binascii.unhexlify(dec)
 					dec1 = dec0.decode('base64','strict')
 		   			sendMessage(msg.to, "" + dec1)
 			else:
@@ -454,14 +451,12 @@ def SEND_MESSAGE(op):
                     			sendMessage(msg.to, datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S'))
 				if (".enc " in msg.text):
 		   			enc = msg.text.replace(".enc ","")
-					key = Fernet.generate_key() #this is your "password"
 					enc0 = enc.encode('base64','strict')
-					enc1 = Fernet(key)
-					enc2 = enc1.encrypt(enc0)
-		   			sendMessage(msg.to, "" + enc2)
+					enc1 = binascii.hexlify(enc0)
+		   			sendMessage(msg.to, "" + enc1)
 				if (".dec " in msg.text):
 		   			dec = msg.text.replace(".dec ","")
-					dec0 = enc1.decrypt(enc0)
+					dec0 = binascii.unhexlify(dec)
 					dec1 = dec0.decode('base64','strict')
 		   			sendMessage(msg.to, "" + dec1)
 				if msg.text == ".ping":
@@ -651,14 +646,12 @@ def SEND_MESSAGE(op):
 						sendMessage(msg.to, "✅")
 				if (".enc " in msg.text):
 		   			enc = msg.text.replace(".enc ","")
-					key = Fernet.generate_key() #this is your "password"
 					enc0 = enc.encode('base64','strict')
-					enc1 = Fernet(key)
-					enc2 = enc1.encrypt(enc0)
-		   			sendMessage(msg.to, "" + enc2)
+					enc1 = binascii.hexlify(enc0)
+		   			sendMessage(msg.to, "" + enc1)
 				if (".dec " in msg.text):
 		   			dec = msg.text.replace(".dec ","")
-					dec0 = enc1.decrypt(enc0)
+					dec0 = binascii.unhexlify(dec)
 					dec1 = dec0.decode('base64','strict')
 		   			sendMessage(msg.to, "" + dec1)
 				if msg.text == ".about":
