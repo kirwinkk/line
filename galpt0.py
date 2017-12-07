@@ -526,9 +526,9 @@ def RECEIVE_MESSAGE(op):
 			if (".trans " in msg.text):
 				try:
 					with Timeout(10):
-    					words = msg.text.replace(".trans ","")
-					trans = translate(words, langcode, 'auto')
-					sendMessage(msg.to, "" + trans)
+    						words = msg.text.replace(".trans ","")
+						trans = translate(words, langcode, 'auto')
+						sendMessage(msg.to, "" + trans)
     			
 				except Timeout.Timeout:
 					sendMessage(msg.to,"❎ Timeout. Try again later.")
@@ -651,9 +651,9 @@ def SEND_MESSAGE(op):
 				if (".trans " in msg.text):
 					try:
 						with Timeout(10):
-    						words = msg.text.replace(".trans ","")
-						trans = translate(words, langcode, 'auto')
-						sendMessage(msg.to, "" + trans)
+    							words = msg.text.replace(".trans ","")
+							trans = translate(words, langcode, 'auto')
+							sendMessage(msg.to, "" + trans)
     			
 					except Timeout.Timeout:
 						sendMessage(msg.to,"❎ Timeout. Try again later.")
@@ -679,9 +679,9 @@ def SEND_MESSAGE(op):
 		   			if (".trans " in msg.text):
 						try:
 							with Timeout(10):
-    							words = msg.text.replace(".trans ","")
-							trans = translate(words, langcode, 'auto')
-							sendMessage(msg.to, "" + trans)
+    								words = msg.text.replace(".trans ","")
+								trans = translate(words, langcode, 'auto')
+								sendMessage(msg.to, "" + trans)
     			
 						except Timeout.Timeout:
 							sendMessage(msg.to,"❎ Timeout. Try again later.")
