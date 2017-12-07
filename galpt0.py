@@ -6,7 +6,7 @@ from LineAlpha.LineThrift.TalkService import Client
 from googletrans import Translator
 from mtranslate import translate
 import time, datetime, random ,sys, re, string, os, json, codecs, threading, glob, subprocess, webbrowser, ConfigParser
-import base64
+import base64, multiprocessing
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -325,14 +325,19 @@ for x in range(0,3):
     translate()
 
 def translate():
-    start = time.time()
-    while (time.time() - start < 5):
-        # do your normal function
-	words = msg.text.replace(".trans ","")
-	trans = translate(words, langcode, 'auto')
-	sendMessage(msg.to, "" + trans)
+	# Wait a maximum of 10 seconds for foo
+	# Usage: join([timeout in seconds])
+	p.join(10)
 
-    return;
+	# If thread is active
+	if p.is_alive():
+    		words = msg.text.replace(".trans ","")
+		trans = translate(words, langcode, 'auto')
+		sendMessage(msg.to, "" + trans)
+
+    		# Terminate foo
+    		p.terminate()
+    		sendMessage(msg.to,"❎")
 
 def autolike():
     for zx in range(0,20):
