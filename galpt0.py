@@ -5,6 +5,7 @@ from LineAlpha.LineThrift.ttypes import Message
 from LineAlpha.LineThrift.TalkService import Client
 import time, datetime, random ,sys, re, string, os, json, codecs, threading, glob, subprocess, webbrowser, ConfigParser
 import base64, mechanize, tweepy
+from cryptography.fernet import Fernet
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -223,24 +224,18 @@ def RECEIVE_MESSAGE(op):
 			if msg.text == ".m?":
 				if msg.from_ in galpt:
                 			sendMessage(msg.to, msg.to)
-			if (".enc " in msg.text):
-				enc = msg.text.replace(".enc ","")
-				enc0 = enc.encode('base64','strict')
-				enc1 = enc0.encode('base64','strict')
-				enc2 = enc1.encode('base64','strict')
-				enc3 = enc2.encode('base64','strict')
-				enc4 = enc3.encode('base64','strict')
-				enc5 = enc4.encode('base64','strict')
-				sendMessage(msg.to, "" + enc5)
-			if (".dec " in msg.text):
-				dec = msg.text.replace(".dec ","")
-				dec0 = dec.decode('base64','strict')
-				dec1 = dec0.decode('base64','strict')
-				dec2 = dec1.decode('base64','strict')
-				dec3 = dec2.decode('base64','strict')
-				dec4 = dec3.decode('base64','strict')
-				dec5 = dec4.decode('base64','strict')
-				sendMessage(msg.to, "" + dec5)
+				if (".enc " in msg.text):
+		   			enc = msg.text.replace(".enc ","")
+					key = Fernet.generate_key() #this is your "password"
+					enc0 = enc.encode('base64','strict')
+					enc1 = Fernet(key)
+					enc2 = enc1.encrypt(enc0)
+		   			sendMessage(msg.to, "" + enc2)
+				if (".dec " in msg.text):
+		   			dec = msg.text.replace(".dec ","")
+					dec0 = enc1.decrypt(enc0)
+					dec1 = dec0.decode('base64','strict')
+		   			sendMessage(msg.to, "" + dec1)
 			else:
             			pass
 			if msg.text == ".like": #Ngelike Status Teman
@@ -459,22 +454,16 @@ def SEND_MESSAGE(op):
                     			sendMessage(msg.to, datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S'))
 				if (".enc " in msg.text):
 		   			enc = msg.text.replace(".enc ","")
+					key = Fernet.generate_key() #this is your "password"
 					enc0 = enc.encode('base64','strict')
-					enc1 = enc0.encode('base64','strict')
-					enc2 = enc1.encode('base64','strict')
-					enc3 = enc2.encode('base64','strict')
-					enc4 = enc3.encode('base64','strict')
-					enc5 = enc4.encode('base64','strict')
-		   			sendMessage(msg.to, "" + enc5)
+					enc1 = Fernet(key)
+					enc2 = enc1.encrypt(enc0)
+		   			sendMessage(msg.to, "" + enc2)
 				if (".dec " in msg.text):
 		   			dec = msg.text.replace(".dec ","")
-					dec0 = dec.decode('base64','strict')
+					dec0 = enc1.decrypt(enc0)
 					dec1 = dec0.decode('base64','strict')
-					dec2 = dec1.decode('base64','strict')
-					dec3 = dec2.decode('base64','strict')
-					dec4 = dec3.decode('base64','strict')
-					dec5 = dec4.decode('base64','strict')
-		   			sendMessage(msg.to, "" + dec5)
+		   			sendMessage(msg.to, "" + dec1)
 				if msg.text == ".ping":
 					if msg.from_ in galpt:
 						sendMessage(msg.to, "✅")
@@ -660,6 +649,18 @@ def SEND_MESSAGE(op):
 						sendMessage(msg.to, "✅")
 						sendMessage(msg.to, "✅")
 						sendMessage(msg.to, "✅")
+				if (".enc " in msg.text):
+		   			enc = msg.text.replace(".enc ","")
+					key = Fernet.generate_key() #this is your "password"
+					enc0 = enc.encode('base64','strict')
+					enc1 = Fernet(key)
+					enc2 = enc1.encrypt(enc0)
+		   			sendMessage(msg.to, "" + enc2)
+				if (".dec " in msg.text):
+		   			dec = msg.text.replace(".dec ","")
+					dec0 = enc1.decrypt(enc0)
+					dec1 = dec0.decode('base64','strict')
+		   			sendMessage(msg.to, "" + dec1)
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
                 		if msg.text == ".?":
