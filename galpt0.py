@@ -226,11 +226,11 @@ def RECEIVE_MESSAGE(op):
 				if (".enc " in msg.text):
 		   			enc = msg.text.replace(".enc ","")
 					enc0 = enc.encode('base64','strict')
-					enc1 = base32.encode(enc0)
+					enc1 = base64.b32encode(enc0)
 		   			sendMessage(msg.to, "" + enc1)
 				if (".dec " in msg.text):
 		   			dec = msg.text.replace(".dec ","")
-					dec0 = base32.decode(dec)
+					dec0 = base64.b32decode(dec)
 					dec1 = dec0.decode('base64','strict')
 		   			sendMessage(msg.to, "" + dec1)
 			else:
@@ -452,11 +452,11 @@ def SEND_MESSAGE(op):
 				if (".enc " in msg.text):
 		   			enc = msg.text.replace(".enc ","")
 					enc0 = enc.encode('base64','strict')
-					enc1 = base32.encode(enc0)
+					enc1 = base64.b32encode(enc0)
 		   			sendMessage(msg.to, "" + enc1)
 				if (".dec " in msg.text):
 		   			dec = msg.text.replace(".dec ","")
-					dec0 = base32.decode(dec)
+					dec0 = base64.b32decode(dec)
 					dec1 = dec0.decode('base64','strict')
 		   			sendMessage(msg.to, "" + dec1)
 				if msg.text == ".ping":
@@ -647,11 +647,11 @@ def SEND_MESSAGE(op):
 				if (".enc " in msg.text):
 		   			enc = msg.text.replace(".enc ","")
 					enc0 = enc.encode('base64','strict')
-					enc1 = base32.encode(enc0)
+					enc1 = base64.b32encode(enc0)
 		   			sendMessage(msg.to, "" + enc1)
 				if (".dec " in msg.text):
 		   			dec = msg.text.replace(".dec ","")
-					dec0 = base32.decode(dec)
+					dec0 = base64.b32decode(dec)
 					dec1 = dec0.decode('base64','strict')
 		   			sendMessage(msg.to, "" + dec1)
 				if msg.text == ".about":
