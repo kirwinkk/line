@@ -325,19 +325,22 @@ for x in range(0,3):
     translate()
 
 def translate(op):
-	# Wait a maximum of 10 seconds for foo
-	# Usage: join([timeout in seconds])
-	p.join(10)
+	try:
+		# Wait a maximum of 10 seconds for foo
+		# Usage: join([timeout in seconds])
+		p.join(10)
 
-	# If thread is active
-	if p.is_alive():
-    		words = msg.text.replace(".trans ","")
-		trans = translate(words, langcode, 'auto')
-		sendMessage(msg.to, "" + trans)
+		# If thread is active
+		if p.is_alive():
+    			words = msg.text.replace(".trans ","")
+			trans = translate(words, langcode, 'auto')
+			sendMessage(msg.to, "" + trans)
 
-    		# Terminate foo
-    		p.terminate()
-    		sendMessage(msg.to,"❎ Timeout. Try again later.")
+    			# Terminate foo
+    			p.terminate()
+    			sendMessage(msg.to,"❎ Timeout. Try again later.")
+	except:
+		pass
 
 def autolike():
     for zx in range(0,20):
