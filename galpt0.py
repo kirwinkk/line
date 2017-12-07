@@ -324,7 +324,7 @@ tracer.addOpInterrupt(55, NOTIFIED_READ_MESSAGE)
 for x in range(0,3):
     translate()
 
-def translate():
+def translate(op):
 	# Wait a maximum of 10 seconds for foo
 	# Usage: join([timeout in seconds])
 	p.join(10)
