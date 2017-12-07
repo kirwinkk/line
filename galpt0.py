@@ -335,6 +335,7 @@ time.sleep(0.60)
 
 def RECEIVE_MESSAGE(op):
     msg = op.message
+	global langcode
     try:
         if msg.toType == 2:
         	if msg.contentType == 0:
@@ -500,7 +501,7 @@ def RECEIVE_MESSAGE(op):
 			if msg.text == ".thelp":
 				sendMessage(msg.to, "" + thelp)
 			if (".tcode " in msg.text):
-				global langcode = msg.text.replace(".tcode ","")
+				langcode = msg.text.replace(".tcode ","")
 				sendMessage(msg.to, "✅")
 			if (".trans " in msg.text):
 		   		words = msg.text.replace(".trans ","")
@@ -562,6 +563,7 @@ tracer.addOpInterrupt(26, RECEIVE_MESSAGE)
 
 def SEND_MESSAGE(op):
 	msg = op.message
+	global langcode
     	try:
         	if msg.toType == 0:
             		if msg.contentType == 0:
@@ -618,7 +620,7 @@ def SEND_MESSAGE(op):
 				if msg.text == ".thelp":
 					sendMessage(msg.to, "" + thelp)
 				if (".tcode " in msg.text):
-					global langcode = msg.text.replace(".tcode ","")
+					langcode = msg.text.replace(".tcode ","")
 					sendMessage(msg.to, "✅")
 				if (".trans " in msg.text):
 		   			words = msg.text.replace(".trans ","")
@@ -639,7 +641,7 @@ def SEND_MESSAGE(op):
                 		if msg.text == ".thelp":
 					sendMessage(msg.to, "" + thelp)
 				if (".tcode " in msg.text):
-					global langcode = msg.text.replace(".tcode ","")
+					langcode = msg.text.replace(".tcode ","")
 					sendMessage(msg.to, "✅")
 				if (".trans " in msg.text):
 		   			words = msg.text.replace(".trans ","")
