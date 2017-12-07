@@ -500,7 +500,7 @@ def RECEIVE_MESSAGE(op):
 			if msg.text == ".thelp":
 				sendMessage(msg.to, "" + thelp)
 			if (".tcode " in msg.text):
-				langcode = msg.text.replace(".tcode ","")
+				global langcode = msg.text.replace(".tcode ","")
 				sendMessage(msg.to, "✅")
 			if (".trans " in msg.text):
 		   		words = msg.text.replace(".trans ","")
@@ -618,7 +618,7 @@ def SEND_MESSAGE(op):
 				if msg.text == ".thelp":
 					sendMessage(msg.to, "" + thelp)
 				if (".tcode " in msg.text):
-					langcode = msg.text.replace(".tcode ","")
+					global langcode = msg.text.replace(".tcode ","")
 					sendMessage(msg.to, "✅")
 				if (".trans " in msg.text):
 		   			words = msg.text.replace(".trans ","")
@@ -639,7 +639,7 @@ def SEND_MESSAGE(op):
                 		if msg.text == ".thelp":
 					sendMessage(msg.to, "" + thelp)
 				if (".tcode " in msg.text):
-					langcode = msg.text.replace(".tcode ","")
+					global langcode = msg.text.replace(".tcode ","")
 					sendMessage(msg.to, "✅")
 				if (".trans " in msg.text):
 		   			words = msg.text.replace(".trans ","")
