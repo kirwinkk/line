@@ -6,7 +6,7 @@ from LineAlpha.LineThrift.TalkService import Client
 from googletrans import Translator
 from mtranslate import translate
 import time, datetime, random ,sys, re, string, os, json, codecs, threading, glob, subprocess, webbrowser, ConfigParser
-import base64, multiprocessing
+import base64, multiprocessing, signal
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -321,25 +321,15 @@ def NOTIFIED_READ_MESSAGE(op):
 
 tracer.addOpInterrupt(55, NOTIFIED_READ_MESSAGE)
 
-for x in range(0,3):
-    translate()
-
-def translate(arg=None):
+def translate():
 	try:
-		# Wait a maximum of 10 seconds for foo
-		# Usage: join([timeout in seconds])
-		p.join(10)
-
-		# If thread is active
-		if p.is_alive():
+		with Timeout(10):
     			words = msg.text.replace(".trans ","")
 			trans = translate(words, langcode, 'auto')
 			sendMessage(msg.to, "" + trans)
-
-    			# Terminate foo
-    			p.terminate()
-    			sendMessage(msg.to,"❎ Timeout. Try again later.")
-	except:
+    			
+	except Timeout.Timeout:
+		sendMessage(msg.to,"❎ Timeout. Try again later.")
 		pass
 
 def autolike():
