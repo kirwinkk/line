@@ -322,7 +322,7 @@ def NOTIFIED_READ_MESSAGE(op):
 tracer.addOpInterrupt(55, NOTIFIED_READ_MESSAGE)
 
 for x in range(0,3):
-    translate(self)
+    translate(op)
 
 def translate():
 	try:
