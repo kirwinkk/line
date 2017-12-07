@@ -335,7 +335,7 @@ time.sleep(0.60)
 
 def RECEIVE_MESSAGE(op):
     msg = op.message
-	global langcode
+    global langcode
     try:
         if msg.toType == 2:
         	if msg.contentType == 0:
