@@ -168,6 +168,8 @@ Usage:
 2) type [(dot)trans {words_to_translate}]
 """
 
+translator = Translator()
+
 setTime = {}
 setTime = wait["setTime"]
 
@@ -505,7 +507,7 @@ def RECEIVE_MESSAGE(op):
 				sendMessage(msg.to, "✅")
 			if (".trans " in msg.text):
 		   		words = msg.text.replace(".trans ","")
-				trans = translate(words,langcode,"auto")
+				trans = translate(words, langcode, 'auto')
 				sendMessage(msg.to, "" + trans)
 			if msg.text == ".about":
 				sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
@@ -624,7 +626,7 @@ def SEND_MESSAGE(op):
 					sendMessage(msg.to, "✅")
 				if (".trans " in msg.text):
 		   			words = msg.text.replace(".trans ","")
-					trans = translate(words,langcode,"auto")
+					trans = translate(words, langcode, 'auto')
 					sendMessage(msg.to, "" + trans)
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
@@ -645,7 +647,7 @@ def SEND_MESSAGE(op):
 					sendMessage(msg.to, "✅")
 				if (".trans " in msg.text):
 		   			words = msg.text.replace(".trans ","")
-					trans = translate(words,langcode,"auto")
+					trans = translate(words, langcode, 'auto')
 					sendMessage(msg.to, "" + trans)
 				if (".n " in msg.text):
               				if msg.from_ in galpt:
