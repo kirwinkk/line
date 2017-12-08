@@ -4,9 +4,8 @@ from LineAlpha import LineClient
 from LineAlpha.LineApi import LineTracer
 from LineAlpha.LineThrift.ttypes import Message
 from LineAlpha.LineThrift.TalkService import Client
-import time, datetime, random ,sys, re, string, os, json
+import time, datetime, random ,sys, re, string, os, json, base64
 from mtranslate import translate
-import base64
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -159,8 +158,7 @@ Translate Codes
 =================
 Usage:
 1) type [(dot)tcode {translate_code}]
-2) type [(dot)trans {words_to_translate}]
-"""
+2) type [(dot)trans {words_to_translate}]"""
 
 setTime = {}
 setTime = wait["setTime"]
