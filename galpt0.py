@@ -6,8 +6,7 @@ from LineAlpha.LineThrift.TalkService import Client
 from googletrans import Translator
 from mtranslate import translate
 import time, datetime, random ,sys, re, string, os, json, codecs, threading, glob, subprocess
-import base64, timeout_decorator
-
+import base64
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -165,8 +164,6 @@ Usage:
 1) type [(dot)tcode {translate_code}]
 2) type [(dot)trans {words_to_translate}]
 """
-
-translator = Translator()
 
 setTime = {}
 setTime = wait["setTime"]
