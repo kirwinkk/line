@@ -8,6 +8,7 @@ import time, datetime, random ,sys, re, string, os, json
 profile, setting, tracer = cl.getProfile(), cl.getSettings(), LineTracer(cl)
 offbot, messageReq, wordsArray, waitingAnswer = [], {}, {}, {}
 
+
 print cl._loginresult()
 
 def sendMessage(to, text, contentMetadata={}, contentType=0):
