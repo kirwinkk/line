@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
+
 from LineAlpha import LineClient
 from LineAlpha.LineApi import LineTracer
 from LineAlpha.LineThrift.ttypes import Message
 from LineAlpha.LineThrift.TalkService import Client
-from googletrans import Translator
+import time, datetime, random ,sys, re, string, os, json
 from mtranslate import translate
-import time, datetime, random ,sys, re, string, os, json, codecs, threading, glob, subprocess
 import base64
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -19,14 +20,10 @@ offbot, messageReq, wordsArray, waitingAnswer = [], {}, {}, {}
 print client._loginresult()
 
 wait = {
-    	'autoJoin':True,
-    	'autoCancel':{"on":False,"members":1},
-    	'leaveRoom':True,
-    	'autoAdd':True,
-	'readPoint':{},
-    	'readMember':{},
-    	'setTime':{},
-    	'ROM':{}
+    'readPoint':{},
+    'readMember':{},
+    'setTime':{},
+    'ROM':{}
    }
 
 galpt = ["uc772a6893813833e0e990044f6cac302"]
