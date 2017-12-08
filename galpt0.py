@@ -5,7 +5,7 @@ from LineAlpha.LineThrift.ttypes import Message
 from LineAlpha.LineThrift.TalkService import Client
 from googletrans import Translator
 from mtranslate import translate
-import time, datetime, random ,sys, re, string, os, json, codecs, threading, glob, subprocess, webbrowser, ConfigParser
+import time, datetime, random ,sys, re, string, os, json, codecs, threading, glob, subprocess
 import base64, timeout_decorator
 
 reload(sys)
@@ -197,17 +197,6 @@ def AUTO_ADD(op):
 	
 tracer.addOpInterrupt(5,AUTO_ADD)
 
-def nameUpdate():
-    while True:
-	try:
-    		nowT = datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S')
-		profile = client.getProfile()
-                profile.displayName = string + " " + nowT
-                client.updateProfile(profile)
-		time.sleep(600)
-	except:
-        	break
-
 def AUTO_JOIN_GROUP(op):
 	try:
         	print op.param1
@@ -328,25 +317,16 @@ def RECEIVE_MESSAGE(op):
 			if msg.text == ".m?":
 				if msg.from_ in galpt:
                 			sendMessage(msg.to, msg.to)
-				if (".enc " in msg.text):
-		   			enc = msg.text.replace(".enc ","")
-					enc0 = enc.encode('base64','strict')
-					enc1 = base64.b32encode(enc0)
-		   			sendMessage(msg.to, "" + enc1)
-				if (".dec " in msg.text):
-		   			dec = msg.text.replace(".dec ","")
-					dec0 = base64.b32decode(dec)
-					dec1 = dec0.decode('base64','strict')
-		   			sendMessage(msg.to, "" + dec1)
-			else:
-            			pass
-			if msg.text == ".like": #Ngelike Status Teman
-                		print "[Command]Like executed"
-                		sendMessage(msg.to, "✅")
-                		try:
-                  			autolike()
-                		except:
-                  			pass
+			if (".enc " in msg.text):
+		   		enc = msg.text.replace(".enc ","")
+				enc0 = enc.encode('base64','strict')
+				enc1 = base64.b32encode(enc0)
+		   		sendMessage(msg.to, "" + enc1)
+			if (".dec " in msg.text):
+		   		dec = msg.text.replace(".dec ","")
+				dec0 = base64.b32decode(dec)
+				dec1 = dec0.decode('base64','strict')
+		   		sendMessage(msg.to, "" + dec1)
 	if msg.toType == 2:
         	if msg.contentType == 0:
                 	if msg.text == ".mid":
@@ -417,7 +397,7 @@ def RECEIVE_MESSAGE(op):
                     		else:
                         		gInviMids = [contact.mid for contact in group.invitee]
                         		client.cancelGroupInvitation(msg.to, gInviMids)
-                        		sendMessage(msg.to, str(len(group.invitee)) + " Done")
+                        		sendMessage(msg.to, str(len(group.invitee)) + " canceled")
                 	if ".ginv " in msg.text:
                     		key = msg.text[-33:]
                     		client.findAndAddContactsByMid(key)
@@ -465,38 +445,34 @@ def RECEIVE_MESSAGE(op):
 				except Exception as error:
 		    			print error
 			if msg.text == ".ping":
-					if msg.from_ in galpt:
-						sendMessage(msg.to, "✅")
-						sendMessage(msg.to, "✅")
-						sendMessage(msg.to, "✅")
-						sendMessage(msg.to, "✅")
-						sendMessage(msg.to, "✅")
-						sendMessage(msg.to, "✅")
-						sendMessage(msg.to, "✅")
-						sendMessage(msg.to, "✅")
-						sendMessage(msg.to, "✅")
-						sendMessage(msg.to, "✅")
+				if msg.from_ in galpt:
+					sendMessage(msg.to, "✅")
+					sendMessage(msg.to, "✅")
+					sendMessage(msg.to, "✅")
+					sendMessage(msg.to, "✅")
+					sendMessage(msg.to, "✅")
+					sendMessage(msg.to, "✅")
+					sendMessage(msg.to, "✅")
+					sendMessage(msg.to, "✅")
+					sendMessage(msg.to, "✅")
+					sendMessage(msg.to, "✅")
 			if (".n " in msg.text):
-              				if msg.from_ in galpt:
-                				string = msg.text.replace(".n ","")
-                				if len(string.decode('utf-8')) <= 20:
-                    					profile = client.getProfile()
-                    					profile.displayName = string
-                    					client.updateProfile(profile)
-							sendMessage(msg.to, "" + string + " ✅")
+              			if msg.from_ in galpt:
+                			string = msg.text.replace(".n ","")
+                			if len(string.decode('utf-8')) <= 20:
+                    				profile = client.getProfile()
+                    				profile.displayName = string
+                    				client.updateProfile(profile)
+						sendMessage(msg.to, "" + string + " ✅")
 			if msg.text == ".thelp":
 				sendMessage(msg.to, "" + thelp)
 			if (".tcode " in msg.text):
 				langcode = msg.text.replace(".tcode ","")
 				sendMessage(msg.to, "✅")
 			if (".trans " in msg.text):
-				try:
-    					words = msg.text.replace(".trans ","")
-					trans = translate(words, langcode, 'auto')
-					sendMessage(msg.to, "" + trans)
-				except:
-					sendMessage(msg.to,"❎ Timeout. Try again later.")
-					return
+    				words = msg.text.replace(".trans ","")
+				trans = translate(words, langcode, 'auto')
+				sendMessage(msg.to, "" + trans)
 			if msg.text == ".about":
 				sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
                 	if msg.text == ".?":
@@ -598,28 +574,15 @@ def SEND_MESSAGE(op):
                     					profile.displayName = string
                     					client.updateProfile(profile)
 							sendMessage(msg.to, "" + string + " ✅")
-				if msg.text == ".n.":
-              				if msg.from_ in galpt:
-                    				selamanya = 1
-						while selamanya == 1:
-    							nowT = datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S')
-							profile = client.getProfile()
-                					profile.displayName = nowT
-                					client.updateProfile(profile)
-							time.sleep(5)
 				if msg.text == ".thelp":
 					sendMessage(msg.to, "" + thelp)
 				if (".tcode " in msg.text):
 					langcode = msg.text.replace(".tcode ","")
 					sendMessage(msg.to, "✅")
 				if (".trans " in msg.text):
-					try:
-    						words = msg.text.replace(".trans ","")
-						trans = translate(words, langcode, 'auto')
-						sendMessage(msg.to, "" + trans)
-					except:
-						sendMessage(msg.to,"❎ Timeout. Try again later.")
-						return
+    					words = msg.text.replace(".trans ","")
+					trans = translate(words, langcode, 'auto')
+					sendMessage(msg.to, "" + trans)
 				if msg.text == ".about":
 					sendMessage(msg.to, "ABOUT\n======\nInstagram: gal.pt\n[https://www.instagram.com/gal.pt]\n======\nEmail: galih6juli@gmail.com")
 				if msg.text == ".?":
@@ -638,13 +601,9 @@ def SEND_MESSAGE(op):
 					langcode = msg.text.replace(".tcode ","")
 					sendMessage(msg.to, "✅")
 				if (".trans " in msg.text):
-					try:
-    						words = msg.text.replace(".trans ","")
-						trans = translate(words, langcode, 'auto')
-						sendMessage(msg.to, "" + trans)
-					except:
-						sendMessage(msg.to,"❎ Timeout. Try again later.")
-						return
+    					words = msg.text.replace(".trans ","")
+					trans = translate(words, langcode, 'auto')
+					sendMessage(msg.to, "" + trans)
 				if (".n " in msg.text):
               				if msg.from_ in galpt:
                 				string = msg.text.replace(".n ","")
@@ -845,13 +804,3 @@ tracer.addOpInterrupt(25,SEND_MESSAGE)
 while True:
     	tracer.execute()
 	
-while True:
-    try:
-        Ops = cl.fetchOps(cl.Poll.rev, 5)
-    except EOFError:
-        raise Exception("It might be wrong revision\n" + str(cl.Poll.rev))
-
-    for Op in Ops:
-        if (Op.type != OpType.END_OF_OPERATION):
-            cl.Poll.rev = max(cl.Poll.rev, Op.revision)
-            bot(Op)
