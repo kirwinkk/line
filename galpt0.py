@@ -176,77 +176,9 @@ def sendMessage(to, text, contentMetadata={}, contentType=0):
     messageReq[to] += 1
     client._client.sendMessage(messageReq[to], mes)
 
-def AUTO_ADD(op):
-	try:
-		if wait["autoAdd"] == True:
-                	client.findAndAddContactsByMid(op.param1)
-                if (wait["message"] in [""," ","\n",None]):
-                    pass
-                else:
-                    client.sendText(op.param1,str(wait["message"]))
-	except Exception as e:
-        	print e
-        	print ("\n\nAUTO_ADD\n\n")
-        	return
-	
-tracer.addOpInterrupt(5,AUTO_ADD)
-
-def AUTO_JOIN_GROUP(op):
-	try:
-        	print op.param1
-		print op.param2
-            	print op.param3
-            	if mid in op.param3:
-                	G = client.getGroup(op.param1)
-                	if wait["autoJoin"] == True:
-                    		if wait["autoCancel"]["on"] == True:
-                        		if len(G.members) <= wait["autoCancel"]["members"]:
-                            			client.rejectGroupInvitation(op.param1)
-                        		else:
-                            			client.acceptGroupInvitation(op.param1)
-                    		else:
-                        		client.acceptGroupInvitation(op.param1)
-                	elif wait["autoCancel"]["on"] == True:
-                    		if len(G.members) <= wait["autoCancel"]["members"]:
-                        		client.rejectGroupInvitation(op.param1)
-            			else:
-                			Inviter = op.param3.replace("",',')
-                			InviterX = Inviter.split(",")
-                			matched_list = []
-	except Exception as e:
-        	print e
-        	print ("\n\nAUTO_JOIN_GROUP\n\n")
-        	return
-	
-tracer.addOpInterrupt(13,AUTO_JOIN_GROUP)
-
-def KICKED_MEMBER(op):
-	try:
-        	if op.param2 not in galpt: #Kalo member ke-kick
-            		client.kickoutFromGroup(op.param1,[op.param2])
-            		client.inviteIntoGroup(op.param1,[op.param3])
-          	if op.param3 in galpt: #Kalo galpt ke-Kick
-            		if op.param2 in daftar:
-              			pass
-            		else:
-                		random.choice(daftar).kickoutFromGroup(op.param1,[op.param2])
-                		client.inviteIntoGroup(op.param1,[op.param3])
-	except Exception as e:
-        	print e
-        	print ("\n\nKICKED_MEMBER\n\n")
-        	return
-
-tracer.addOpInterrupt(19,KICKED_MEMBER)
-
 def NOTIFIED_ADD_CONTACT(op):
     try:
         sendMessage(op.param1, client.getContact(op.param1).displayName + " ✅")
-	if wait["autoAdd"] == True:
-                	client.findAndAddContactsByMid(op.param1)
-                	if (wait["message"] in [""," ","\n",None]):
-                    		pass
-                	else:
-                    		sendMessage(op.param1,str(wait["message"]))
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_ADD_CONTACT\n\n")
@@ -337,14 +269,9 @@ def RECEIVE_MESSAGE(op):
                     		sendMessage(msg.to,md)
                 	if (".gname " in msg.text):
 				if msg.from_ in galpt:
-					if msg.toType == 2:
-						X = client.getGroup(msg.to)
-						X.name = msg.text.replace(".gname ","")
-						client.updateGroup(X)
-					else:
-						sendMessage(msg.to,"❎")
-				else:
-					sendMessage(msg.to,"❎")
+					X = client.getGroup(msg.to)
+					Xname = msg.text.replace(".gname ","")
+					client.updateGroup(Xname)
                 	if msg.text == ".gurl":
                     		sendMessage(msg.to,"line://ti/g/" + client._client.reissueGroupTicket(msg.to))
                 	if msg.text == ".gopen":
@@ -440,11 +367,6 @@ def RECEIVE_MESSAGE(op):
 		    			print error
 			if msg.text == ".ping":
 				if msg.from_ in galpt:
-					sendMessage(msg.to, "✅")
-					sendMessage(msg.to, "✅")
-					sendMessage(msg.to, "✅")
-					sendMessage(msg.to, "✅")
-					sendMessage(msg.to, "✅")
 					sendMessage(msg.to, "✅")
 					sendMessage(msg.to, "✅")
 					sendMessage(msg.to, "✅")
@@ -555,11 +477,6 @@ def SEND_MESSAGE(op):
 						sendMessage(msg.to, "✅")
 						sendMessage(msg.to, "✅")
 						sendMessage(msg.to, "✅")
-						sendMessage(msg.to, "✅")
-						sendMessage(msg.to, "✅")
-						sendMessage(msg.to, "✅")
-						sendMessage(msg.to, "✅")
-						sendMessage(msg.to, "✅")
 				if (".n " in msg.text):
               				if msg.from_ in galpt:
                 				string = msg.text.replace(".n ","")
@@ -606,15 +523,6 @@ def SEND_MESSAGE(op):
                     					profile.displayName = string
                     					client.updateProfile(profile)
 							sendMessage(msg.to, "" + string + " ✅")
-				if msg.text == ".n.":
-              				if msg.from_ in galpt:
-                    				selamanya = 1
-						while selamanya == 1:
-    							nowT = datetime.datetime.today().strftime(' %Y-%m-%d %H:%M:%S')
-							profile = client.getProfile()
-                					profile.displayName = nowT
-                					client.updateProfile(profile)
-							time.sleep(5)
 				if msg.text == ".mid":
                     			sendMessage(msg.to, msg.from_)
                 		if msg.text == ".gid":
@@ -627,16 +535,11 @@ def SEND_MESSAGE(op):
                     			if group.invitee is None: md += "\nMembers: " + str(len(group.members)) + "\n\nInviting: 0"
                     			else: md += "\nMembers: " + str(len(group.members)) + "\nInvited: " + str(len(group.invitee)) + ""
                     			sendMessage(msg.to,md)
-                		if (".gname " in msg.text):
+				if (".gname " in msg.text):
 					if msg.from_ in galpt:
-						if msg.toType == 2:
-							X = client.getGroup(msg.to)
-							X.name = msg.text.replace(".gname ","")
-							client.updateGroup(X)
-						else:
-							sendMessage(msg.to,"❎")
-					else:
-						sendMessage(msg.to,"❎")
+						X = client.getGroup(msg.to)
+						Xname = msg.text.replace(".gname ","")
+						client.updateGroup(Xname)
                 		if msg.text == ".gurl":
                     			sendMessage(msg.to,"line://ti/g/" + client._client.reissueGroupTicket(msg.to))
                 		if msg.text == ".gopen":
@@ -655,7 +558,7 @@ def SEND_MESSAGE(op):
                         			group.preventJoinByTicket = True
                         			client.updateGroup(group)
                         			sendMessage(msg.to, "✅")
-                		if ".k" in msg.text:
+                		if ".k " in msg.text:
                     			if msg.from_ in admin:
 		    				nk0 = msg.text.replace(".k ","")
 		    				nk1 = nk0.lstrip()
@@ -737,11 +640,6 @@ def SEND_MESSAGE(op):
 						sendMessage(msg.to, "✅")
 						sendMessage(msg.to, "✅")
 						sendMessage(msg.to, "✅")
-						sendMessage(msg.to, "✅")
-						sendMessage(msg.to, "✅")
-						sendMessage(msg.to, "✅")
-						sendMessage(msg.to, "✅")
-						sendMessage(msg.to, "✅")
 				if (".enc " in msg.text):
 		   			enc = msg.text.replace(".enc ","")
 					enc0 = enc.encode('base64','strict')
@@ -797,4 +695,3 @@ tracer.addOpInterrupt(25,SEND_MESSAGE)
 
 while True:
     	tracer.execute()
-	
