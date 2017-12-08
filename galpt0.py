@@ -16,7 +16,7 @@ client._qrLogin("line://au/q/")
 profile, setting, tracer = client.getProfile(), client.getSettings(), LineTracer(client)
 offbot, messageReq, wordsArray, waitingAnswer = [], {}, {}, {}
 
-
+print client._loginresult()
 
 wait = {
     'readPoint':{},
